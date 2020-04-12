@@ -1,24 +1,17 @@
-var express    = require('express');        // Utilizaremos express, aqui lo mandamos llamar
+const express = require('express');
+const app = express();
 
-var app        = express();                 // definimos la app usando express
-var bodyParser = require('body-parser'); //
+//Settings
+app.set('port', process.env.PORT || 3000);
 
-// configuramos la app para que use bodyParser(), esto nos dejara usar la informacion de los POST
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-var port = process.env.PORT || 8080;        // seteamos el puerto
-
-var router = express.Router();   //Creamos el router de express
-
-// Seteamos la ruta principal
-router.get('/', function(req, res) {
-    res.json({ message: 'Hooolaa :)'});
+//Middlewares
+app.use(express.json());
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
 });
 
-// Le decimos a la aplicación que utilize las rutas que agregamos
-app.use('/api', router);
-
-// Iniciamos el servidor
-app.listen(port);
-console.log('Aplicación creada en el puerto: ' + port);
+//Routes
+app.use(require('./routes'));
+app.listen(app.get('port'), () => { console.log("Server on port " + app.get('port')); });

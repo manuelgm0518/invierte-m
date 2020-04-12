@@ -1,10 +1,8 @@
 <template>
   <div class="home">
     <NavBar/>
-    <div class="vh-100 bg-golden">
-    </div>
-    <div class="vh-100 bg-light">
-    </div>
+    <div class="vh-100 bg-light"></div>
+    <div class="vh-100 bg-light"></div>
   </div>
 </template>
 
