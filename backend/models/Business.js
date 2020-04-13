@@ -26,6 +26,6 @@ var BusinessSchema = new Schema({
         },
         required: false
     }
-});
+}, { collection:'Business' });
 
 module.exports = model('Business', BusinessSchema);
