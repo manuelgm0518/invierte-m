@@ -34,7 +34,7 @@
 				<b-nav-item-dropdown id="user-settings" v-if="logged" v-bind:text="username" toggle-class="btn btn-golden text-dark" right>
 					<b-dropdown-item>Ajustes xd</b-dropdown-item>
 				</b-nav-item-dropdown>
-
+				
 				<b-button variant="outline-golden text-nowrap ml-2" v-if="!logged" v-on:click="getUser">
 					Ingresar / Registrarse
 				</b-button>
@@ -80,7 +80,7 @@
 
 <script>
 const OFFSET = 60;
-const axios = require('axios');
+//const axios = require('axios');
 
 export default {
 	name: "NavBar",
@@ -152,13 +152,14 @@ export default {
 			this.lastScrollPosition = window.pageYOffset;
 		},
 		async getUser() {
-  try {
-	await axios.get('http://localhost:3000/').then(response => (this.username = response.data));
-	this.logged = true;
-  } catch (error) {
-    console.error(error);
-  }
-}
+			this.$router.go('/LogUp');
+			/*try {
+				await axios.get('http://localhost:3000/').then(response => (this.username = response.data));
+				this.logged = true;
+			} catch (error) {
+				console.error(error);
+			}*/
+		}
 	}
 };
 </script>

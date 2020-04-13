@@ -22,5 +22,4 @@ router.put('/user/:id', (req, res) => {
     });
 });
 
-
 module.exports = router;
