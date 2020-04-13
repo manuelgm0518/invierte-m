@@ -9,9 +9,9 @@
 			<b-navbar-nav class="ml-auto">
 				<b-nav-form class="mr-2">
 					<b-input-group>
-						<b-form-input placeholder="Buscar..." class="bg-light border-0"></b-form-input>
+						<b-form-input placeholder="Buscar..." class="bg-silver border-0"></b-form-input>
 						<b-input-group-append>
-							<b-button variant="golden bg-light border-0 text-golden">
+							<b-button variant="golden bg-silver border-0 text-golden">
 								<i class="fas fa-search ml-auto"></i>
 							</b-button>
 						</b-input-group-append>
@@ -31,11 +31,11 @@
 					<b class>{{ messages }}</b>
 				</b-button>
 
-				<b-nav-item-dropdown id="user-settings" v-bind:text="username" toggle-class="btn btn-golden text-dark" right>
+				<b-nav-item-dropdown id="user-settings" v-if="logged" v-bind:text="username" toggle-class="btn btn-golden text-dark" right>
 					<b-dropdown-item>Ajustes xd</b-dropdown-item>
 				</b-nav-item-dropdown>
 
-				<b-button variant="outline-golden text-nowrap ml-2" v-if="!logged">
+				<b-button variant="outline-golden text-nowrap ml-2" v-if="!logged" v-on:click="getUser">
 					Ingresar / Registrarse
 				</b-button>
 
@@ -43,7 +43,7 @@
 		</b-navbar>
 
 
-		<b-navbar type="light" variant="light shadow py-1 px-5">
+		<b-navbar type="light" variant="silver shadow py-1 px-5">
 
 			<b-navbar-nav>
 				<b-nav-item href="#" class="mr-1" active>
@@ -67,7 +67,7 @@
 			</b-navbar-nav>
 
 			<b-navbar-nav class="ml-auto">
-				<b-form-select class="bg-light border-0" v-model="selected" :options="options">
+				<b-form-select class="bg-silver border-0" v-model="selected" :options="options">
 					<template v-slot:first>
 						<b-form-select-option :value="null" disabled>Selecciona tu Estado...</b-form-select-option>
 					</template>
@@ -80,11 +80,13 @@
 
 <script>
 const OFFSET = 60;
+const axios = require('axios');
+
 export default {
 	name: "NavBar",
 	data() {
 		return {
-			logged: true,
+			logged: false,
 			investments: 2,
 			cartItems: 5,
 			messages: 3,
@@ -148,7 +150,15 @@ export default {
 				return;
 			this.showNavbar = window.pageYOffset < this.lastScrollPosition;
 			this.lastScrollPosition = window.pageYOffset;
-		}
+		},
+		async getUser() {
+  try {
+	await axios.get('http://localhost:3000/').then(response => (this.username = response.data));
+	this.logged = true;
+  } catch (error) {
+    console.error(error);
+  }
+}
 	}
 };
 </script>

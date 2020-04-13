@@ -1,17 +1,10 @@
 const express = require('express');
-const db = require('./database');
 const router = express.Router();
 
 const User = require('./models/User');
 
-const Joaco = new User({
-    firstName: 'Joaquín Emiliano',
-    lastName: 'Pedroza Gutiérrez',
-    email: 'c la come'
-});
-
-router.get('/', (req, res) => {
-    res.send(Joaco);
+router.get('/user', async (req, res) => {
+    res.json(await User.find());
 });
 
 module.exports = router;
