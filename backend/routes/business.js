@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
 });
 
 router.get('/count', (req, res) => {
-    Business.count({}, (err, c) => {
+    Business.countDocuments({}, (err, c) => {
         if(err){
             res.status(400).send(err);
             return;
@@ -27,8 +27,8 @@ router.get('/count', (req, res) => {
     });
 });
 
-router.get('/', (req, res) => {
-    Business.find({}).skip(req.body.min).limit(req.body.max).exec((err, data) => {
+router.post('/interval', (req, res) => {
+    Business.find({}).skip(req.body.min).limit(req.body.max).sort([req.body.order]).exec((err, data) => {
         if(err){
             res.status(400).send(err);
             return;
