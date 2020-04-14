@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import Vuex from 'vuex';
 import BootstrapVue from 'bootstrap-vue'
 import './custom-bootstrap.scss'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+Vue.use(Vuex);
 Vue.use(BootstrapVue, {
   "BTooltip": {
     "boundary": "scrollParent",
