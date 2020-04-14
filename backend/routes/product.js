@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const Business = require('../models/Business');
+const Product = require('../models/Product');
 
 router.post('/', (req, res) => {
-    Business.create(req.body, (err, doc) => {
+    Product.create(req.body, (err, doc) => {
         if(err){
             res.status(400).json(err);
             return;
@@ -16,9 +16,9 @@ router.post('/', (req, res) => {
 });
 
 router.get('/count', (req, res) => {
-    Business.countDocuments({}, (err, c) => {
+    Product.countDocuments({}, (err, c) => {
         if(err){
-            res.status(400).send(err);
+            res.status(400).json(err);
             return;
         }
         else{
@@ -28,7 +28,7 @@ router.get('/count', (req, res) => {
 });
 
 router.post('/interval', (req, res) => {
-    Business.find({}).skip(req.body.min).limit(req.body.max).sort([req.body.order]).exec((err, data) => {
+    Product.find({}).skip(req.body.min).limit(req.body.limit).sort([req.body.order]).exec((err, data) => {
         if(err){
             res.status(400).json(err);
             return;

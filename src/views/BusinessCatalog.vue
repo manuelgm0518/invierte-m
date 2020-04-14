@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 style="padding-top: 30px; padding-left: 10px;">Catálogos de negocios</h1>
+    <h1 style="padding-left: 10px;">Catálogos de negocios</h1>
     
     <p style="padding-left: 10px;">Ordenar por <select v-model="order" v-on:change="getBusiness">
         <option v-bind:value="['name', 1]" selected>Nombre A - Z</option>
@@ -27,12 +27,12 @@
     </div>
 
     <ul>
-        <li><div class="pagination">Anterior</div></li>
+        <li><div class="pagination" v-on:click="changePage(actual - 1)">Anterior</div></li>
         <li v-for="(page, i) in pages" v-bind:key="i">
-            <div class="pagination" v-on:click="chagePage(page)" v-if="page != actual">{{page}}</div>
-            <div class="paginationActual" v-on:click="chagePage(page)" v-if="page == actual">{{page}}</div>
+            <div class="pagination" v-on:click="changePage(page)" v-if="page != actual">{{page}}</div>
+            <div class="paginationActual" v-on:click="changePage(page)" v-if="page == actual">{{page}}</div>
         </li>
-        <li><div class="pagination">Siguiente</div></li>
+        <li><div class="pagination" v-on:click="changePage(actual + 1)">Siguiente</div></li>
     </ul>
     </div>
 </template>
@@ -86,7 +86,7 @@ export default {
                 this.pages.push(i);
             this.getBusiness();
         },
-        chagePage(page){
+        changePage(page){
             if(page > 1 && page <= this.numPages && page != this.page){
                 this.actual = page;
                 this.getPages();
