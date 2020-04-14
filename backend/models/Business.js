@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 var BusinessSchema = new Schema({
-    owner: { type: Schema.Types.ObjectId, ref: 'User', required: [true, 'Ingrese al dueño de la empresa'] },
+    owner: { type: Schema.Types.ObjectId, ref: 'users', required: [true, 'Ingrese al dueño de la empresa'] },
     name: { type: String, required: [true, 'Ingrese el nombre de la empresa'] },
     location: { type: String, required: [true, 'Ingrese la ubicación de la empresa'] },
     imagesURL: [String],
@@ -9,7 +9,7 @@ var BusinessSchema = new Schema({
     description: String,
     content: [{ title: String, body: String }],
     updates: [{
-        owner: { type: Schema.Types.ObjectId, ref: 'User'},
+        owner: { type: Schema.Types.ObjectId, ref: 'users'},
         date: { type: Date, default: Date },
         content: String
     }],
@@ -26,6 +26,6 @@ var BusinessSchema = new Schema({
         },
         required: false
     }
-}, { collection:'Business' });
+}, { collection:'business' });
 
 module.exports = model('Business', BusinessSchema);

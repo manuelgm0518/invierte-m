@@ -10,7 +10,7 @@
 					<i class="fas fa-home mx-1 fa-fw"></i>
 					<span class="d-md-none ml-2">Inicio</span>
 				</b-nav-item>
-				<b-nav-item href="#" v-b-tooltip.hover title="Empresas">
+				<b-nav-item href="#" v-b-tooltip.hover title="Empresas" v-on:click="() => {const path = '/business'; if (this.$route.path !== path) this.$router.push(path)}">
 					<i class="fas fa-building mx-1 fa-fw"></i>
 					<span class="d-md-none ml-2">Empresas</span>
 				</b-nav-item>
@@ -121,8 +121,14 @@ export default {
 			this.user.logged = true;
 			axios.get('http://localhost:3000/api/user', { headers: { token: localStorage.getItem('token') }})
 			.then(res => {
-				this.user.firstName = res.data.firstName;
-				this.user.lastName = res.data.lastName;
+				if(res.status == 200){
+					this.user.firstName = res.data.firstName;
+					this.user.lastName = res.data.lastName;
+				}
+				else{
+					localStorage.clear();
+					location.reload();
+				}
 			});
 		}
 	}
