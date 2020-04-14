@@ -1,8 +1,7 @@
 <template>
   <div class="home">
     <NavBar></NavBar>
-    <div class="vh-100 bg-light"></div>
-    <div class="vh-100 bg-light"></div>
+    <h1 style="padding-top: 200px; padding-left: 200px;">Home</h1>
   </div>
 </template>
 

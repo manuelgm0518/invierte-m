@@ -56,7 +56,7 @@ export default {
                         }
                         else{
                             this.user.lastName = this.user.firstName = this.user.email = this.user.password = this.verPass = '';
-                            this.$router.push('/LogIn');
+                            const path = '/logIn'; if (this.$route.path !== path) this.$router.push(path);
                         }
                     }
                 });
