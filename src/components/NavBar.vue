@@ -35,7 +35,7 @@
 					<b-dropdown-item>Ajustes xd</b-dropdown-item>
 				</b-nav-item-dropdown>
 				
-				<b-button variant="outline-golden text-nowrap ml-2" v-if="!logged" v-on:click="getUser">
+				<b-button variant="outline-golden text-nowrap ml-2" v-if="!logged" v-on:click="logIn">
 					Ingresar / Registrarse
 				</b-button>
 
@@ -151,14 +151,8 @@ export default {
 			this.showNavbar = window.pageYOffset < this.lastScrollPosition;
 			this.lastScrollPosition = window.pageYOffset;
 		},
-		async getUser() {
-			this.$router.go('/LogUp');
-			/*try {
-				await axios.get('http://localhost:3000/').then(response => (this.username = response.data));
-				this.logged = true;
-			} catch (error) {
-				console.error(error);
-			}*/
+		logIn() {
+			this.$router.push('/LogIn');
 		}
 	}
 };

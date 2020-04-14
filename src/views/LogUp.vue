@@ -6,7 +6,7 @@
             <label>Nombres</label><br><input type="text" required v-model="user.firstName"><br>
             <label>Apellidos</label><br><input type="text" required v-model="user.lastName"><br>
             <label>Correo electrónico</label><br><input type="email" required v-model="user.email"><br>
-            <label>Constraseña</label><br><input type="password" required v-model="user.password"><br>
+            <label>Contraseña</label><br><input type="password" required v-model="user.password"><br>
             <label>Vuelve a escribir la contraseña</label><br><input type="password" required v-model="verPass"><br>
             <button type="submit">Regístrate</button>
         </form>
@@ -14,7 +14,8 @@
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue'
+import NavBar from '@/components/NavBar.vue';
+import axios from 'axios';
 
 export default {
     name:'LogUp',
@@ -35,26 +36,29 @@ export default {
     methods:{
         addUser(){
             if(this.user.password.length <= 8){
-                alert('La contraseña debe de contener más de 8 carácteres');
+                alert('La contraseña debe de contener más de 8 carácteres'); //Falta ponerlo de una manera más bonita
             }
             else if(this.user.password != this.verPass){
                 alert('Las contraseñas no coinciden'); //Falta ponerlo de una manera más bonita
             }
             else{
-                console.log(JSON.stringify(this.user));
-                fetch('http://localhost:3000/api/user', {
-                    method: 'POST',
-                    body: JSON.stringify(this.user),
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
+                let newUser = {
+                    firstName: this.user.firstName,
+                    lastName: this.user.lastName,
+                    email: this.user.email,
+                    password: this.user.password
+                }
+                axios.post('http://localhost:3000/api/user', newUser)
+                .then(res => {
+                    if(res.status == 200){
+                        if(res.data.error == 'User already exists'){
+                            alert('El usurio ya existe'); //Falta ponerlo de una manera más bonita
+                        }
+                        else{
+                            this.user.lastName = this.user.firstName = this.user.email = this.user.password = this.verPass = '';
+                            this.$router.push('/LogIn');
+                        }
                     }
-                })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                    //this.user.name = this.user.email = this.user.password = this.verPass = '';
-                    alert('En mantenimiento');
                 });
             }
         }
