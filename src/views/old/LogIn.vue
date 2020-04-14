@@ -44,7 +44,7 @@ export default {
                     }
                     else{
                        localStorage.setItem('token', res.data);
-                        this.$router.push('/'); 
+                       const path = '/'; if (this.$route.path !== path) this.$router.push(path);
                     }
                 }
             });

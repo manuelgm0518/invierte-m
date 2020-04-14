@@ -78,7 +78,7 @@
 						<b-dropdown-item-button>
 							<i class="fas fa-cog fa-fw mr-2 text-primary"></i>Ajustes
 						</b-dropdown-item-button>
-						<b-dropdown-item-button>
+						<b-dropdown-item-button v-on:click="logOut">
 							<i class="fas fa-power-off fa-fw mr-2 text-danger"></i>Salir
 						</b-dropdown-item-button>
 					</b-nav-item-dropdown>
@@ -89,6 +89,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
 	name: "NavBar",
 	data: () => ({
@@ -102,10 +104,10 @@ export default {
 		],
 
 		notifications: {
-			messages: 4,
-			cartItems: 7,
-			investments: 2,
-			businesses: 1
+			messages: 0,
+			cartItems: 0,
+			investments: 0,
+			businesses: 0
 		},
 		user: {
 			logged: false,
@@ -118,7 +120,30 @@ export default {
 			return this.$route.params;
 		},
 		logIn() {
+			const path = '/logIn'; if (this.$route.path !== path) this.$router.push(path)
+		},
+		logOut(){
+			localStorage.clear();
+			location.reload();
+		}
+	},
+	created(){
+		if(localStorage.getItem('token') == null){
+            this.user.logged = false;
+		}
+		else{
 			this.user.logged = true;
+			axios.get('http://localhost:3000/api/user', { headers: { token: localStorage.getItem('token') }})
+			.then(res => {
+				if(res.status == 200){
+					this.user.firstName = res.data.firstName;
+					this.user.lastName = res.data.lastName;
+				}
+				else{
+					localStorage.clear();
+					location.reload();
+				}
+			});
 		}
 	}
 };
