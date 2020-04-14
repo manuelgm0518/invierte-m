@@ -1,52 +1,54 @@
 <template>
 	<b-navbar type="light" variant="white shadow px-lg-5" toggleable="md" fixed="top">
 		<b-navbar-brand style="height: 3rem">
-			<img src="../assets/inviertem-logo.svg" class="h-100"/>
+			<img src="../assets/inviertem-logo.svg" class="h-100" />
 		</b-navbar-brand>
 		<b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 		<b-collapse id="nav-collapse" is-nav>
-			<b-navbar-nav class="ml-auto mr-md-3 mt-2 mt-lg-0">
-				<b-nav-item href="#" v-b-tooltip.hover title="Inicio" active>
-					<i class="fas fa-home mx-1 fa-fw"></i>
-					<span class="d-md-none ml-2">Inicio</span>
-				</b-nav-item>
-				<b-nav-item href="#" v-b-tooltip.hover title="Empresas">
-					<i class="fas fa-building mx-1 fa-fw"></i>
-					<span class="d-md-none ml-2">Empresas</span>
-				</b-nav-item>
-				<b-nav-item href="#" v-b-tooltip.hover title="Productos">
-					<i class="fas fa-shopping-basket mx-1 fa-fw"></i>
-					<span class="d-md-none ml-2">Productos</span>
-				</b-nav-item>
-				<b-nav-item href="#" v-b-tooltip.hover title="Vacantes">
-					<i class="fas fa-user-tag mx-1 fa-fw"></i>
-					<span class="d-md-none ml-2">Vacantes</span>
-				</b-nav-item>
-				<b-nav-item href="#" v-b-tooltip.hover title="Emprender">
-					<i class="fas fa-chart-line ml-1 fa-fw"></i>
-					<span class="d-md-none ml-2">Emprender</span>
-				</b-nav-item>
+			
+			<b-navbar-nav class="ml-auto mr-md-2 mt-2 mt-md-0">
+				<router-link
+					class="mx-md-1"
+					v-for="nav in navigation"
+					:key="nav.routeName"
+					v-slot="{ href, navigate, isExactActive }"
+					:to="{'name':nav.routeName}"
+				>
+					<b-nav-item
+						:active="isExactActive"
+						:href="href"
+						@click="navigate"
+						v-b-tooltip.hover
+						:title="nav.routeName"
+					>
+						<i :class="nav.icon + ' mx-2 mx-md-0 fa-fw'" />
+						<span class="d-md-none ml-2">{{ nav.routeName }}</span>
+					</b-nav-item>
+				</router-link>
 			</b-navbar-nav>
+
 			<b-navbar-nav>
-				<b-nav-form class="d-md-none d-lg-inline-flex my-1 my-lg-0 mr-lg-3">
-					<b-input-group class>
-						<b-form-input placeholder="Buscar..." class="bg-silver border-0"></b-form-input>
+				
+				<b-nav-form class="d-md-none d-lg-inline-flex my-1 my-lg-0 mr-lg-3" v-if="$route.name!='Buscar'">
+					<b-input-group>
+						<b-form-input v-model="search" placeholder="Buscar..." class="bg-silver border-0" />
 						<b-input-group-append>
-							<b-button variant="golden">
-								<i class="fas fa-search fa-fw"></i>
-							</b-button>
+							<router-link v-slot="{ href, navigate }" :to="{'name':'Buscar','params':{ search }}">
+								<b-button variant="silver border-0" :href="href" @click="navigate">
+									<i class="fas fa-search fa-fw" />
+								</b-button>
+							</router-link>
 						</b-input-group-append>
 					</b-input-group>
 				</b-nav-form>
+
+				
+
 				<b-nav-form class="my-1 my-lg-0">
-					<b-button
-						variant="outline-golden text-nowrap"
-						@click="logIn"
-						v-if="!user.logged"
-					>Ingresar / Registrarse</b-button>
+					<b-button variant="outline-golden text-nowrap" @click="logIn" v-if="!user.logged">{{ search }}</b-button>
 					<b-nav-item-dropdown right v-else>
 						<template v-slot:button-content>
-							{{ user.firstName }}
+							kkdvak
 							<b-badge
 								variant="golden mx-1"
 								pill
@@ -90,6 +92,15 @@
 export default {
 	name: "NavBar",
 	data: () => ({
+		search: "",
+		navigation: [
+			{ routeName: "Inicio", icon: "fas fa-home" },
+			{ routeName: "Empresas", icon: "fas fa-building" },
+			{ routeName: "Productos", icon: "fas fa-shopping-basket" },
+			{ routeName: "Vacantes", icon: "fas fa-user-tag" },
+			{ routeName: "Emprender", icon: "fas fa-chart-line" }
+		],
+
 		notifications: {
 			messages: 4,
 			cartItems: 7,
@@ -97,12 +108,15 @@ export default {
 			businesses: 1
 		},
 		user: {
-            logged: false,
+			logged: false,
 			firstName: "Manuel",
 			lastName: "González Martínez"
 		}
 	}),
 	methods: {
+		getRouteName() {
+			return this.$route.params;
+		},
 		logIn() {
 			this.user.logged = true;
 		}

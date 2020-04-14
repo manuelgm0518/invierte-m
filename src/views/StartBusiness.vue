@@ -1,11 +1,15 @@
 <template>
   <div>
-    <h1>Inicio</h1>
+    <h1>Emprender</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Home"
+  name: 'StartBusiness'
 }
 </script>
+
+<style>
+
+</style>

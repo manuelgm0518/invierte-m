@@ -1,12 +1,12 @@
 <template>
 	<div>
-		<h1>Empresa: {{ $route.params.id }}</h1>
+		<h1>Catálogo de Vacantes</h1>
 	</div>
 </template>
 
 <script>
 export default {
-	name: "Business"
+	name: "VacantCatalog"
 };
 </script>
 
