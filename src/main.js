@@ -5,7 +5,21 @@ import BootstrapVue from 'bootstrap-vue'
 import './custom-bootstrap.scss'
 
 Vue.config.productionTip = false
-Vue.use(BootstrapVue);
+Vue.use(BootstrapVue, {
+  "BTooltip": {
+    "boundary": "scrollParent",
+    "boundaryPadding": 5,
+    "customClass": null,
+    "delay": 50,
+    "variant": "golden"
+  },
+  "BDropdown": {
+    "toggleText": "Toggle Dropdown",
+    "size": null,
+    "variant": "golden  ",
+    "splitVariant": null
+  },
+});
 
 new Vue({
   router,

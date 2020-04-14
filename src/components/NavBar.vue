@@ -1,178 +1,119 @@
 <template>
-	<div id="main-navbar" :class="{ 'hidden-navbar': !showNavbar }">
-		<b-navbar type="light" variant="white px-5">
-
-			<b-navbar-brand>
-				<img src="../assets/logotype.svg" width="100%" alt="InvierteM" />
-			</b-navbar-brand>
-
-			<b-navbar-nav class="ml-auto">
-				<b-nav-form class="mr-2">
-					<b-input-group>
+	<b-navbar type="light" variant="white shadow px-lg-5" toggleable="md" fixed="top">
+		<b-navbar-brand style="width: 12rem;">
+			<img src="../assets/inviertem-logo.svg" class="w-100" />
+		</b-navbar-brand>
+		<b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+		<b-collapse id="nav-collapse" is-nav>
+			<b-navbar-nav class="ml-auto mr-md-3 mt-2 mt-lg-0">
+				<b-nav-item href="#" v-b-tooltip.hover title="Inicio" active>
+					<i class="fas fa-home mx-1 fa-fw"></i>
+					<span class="d-md-none ml-2">Inicio</span>
+				</b-nav-item>
+				<b-nav-item href="#" v-b-tooltip.hover title="Empresas">
+					<i class="fas fa-building mx-1 fa-fw"></i>
+					<span class="d-md-none ml-2">Empresas</span>
+				</b-nav-item>
+				<b-nav-item href="#" v-b-tooltip.hover title="Productos">
+					<i class="fas fa-shopping-basket mx-1 fa-fw"></i>
+					<span class="d-md-none ml-2">Productos</span>
+				</b-nav-item>
+				<b-nav-item href="#" v-b-tooltip.hover title="Vacantes">
+					<i class="fas fa-user-tag mx-1 fa-fw"></i>
+					<span class="d-md-none ml-2">Vacantes</span>
+				</b-nav-item>
+				<b-nav-item href="#" v-b-tooltip.hover title="Emprender">
+					<i class="fas fa-chart-line ml-1 fa-fw"></i>
+					<span class="d-md-none ml-2">Emprender</span>
+				</b-nav-item>
+			</b-navbar-nav>
+			<b-navbar-nav>
+				<b-nav-form class="d-md-none d-lg-inline-flex my-1 my-lg-0 mr-lg-3">
+					<b-input-group class>
 						<b-form-input placeholder="Buscar..." class="bg-silver border-0"></b-form-input>
 						<b-input-group-append>
-							<b-button variant="golden bg-silver border-0 text-golden">
-								<i class="fas fa-search ml-auto"></i>
+							<b-button variant="golden">
+								<i class="fas fa-search fa-fw"></i>
 							</b-button>
 						</b-input-group-append>
 					</b-input-group>
 				</b-nav-form>
-
-				<b-button variant="outline-golden border-0" v-b-tooltip.hover title="Mis inversiones" v-if="logged">
-					<i class="fas fa-piggy-bank"></i>
-					<b class>{{ investments }}</b>
-				</b-button>
-				<b-button variant="outline-golden border-0" v-b-tooltip.hover title="Mi carrito" v-if="logged">
-					<i class="fas fa-shopping-cart"></i>
-					<b class>{{ cartItems }}</b>
-				</b-button>
-				<b-button variant="outline-golden border-0" v-b-tooltip.hover title="Mensajes" v-if="logged">
-					<i class="fas fa-comments"></i>
-					<b class>{{ messages }}</b>
-				</b-button>
-
-				<b-nav-item-dropdown id="user-settings" v-if="logged" v-bind:text="username" toggle-class="btn btn-golden text-dark" right>
-					<b-dropdown-item>Ajustes xd</b-dropdown-item>
-				</b-nav-item-dropdown>
-
-				<b-button variant="outline-golden text-nowrap ml-2" v-if="!logged" v-on:click="getUser">
-					Ingresar / Registrarse
-				</b-button>
-
+				<b-nav-form class="my-1 my-lg-0">
+					<b-button
+						variant="outline-golden text-nowrap"
+						@click="logIn"
+						v-if="!user.logged"
+					>Ingresar / Registrarse</b-button>
+					<b-nav-item-dropdown right v-else>
+						<template v-slot:button-content>
+							{{ user.firstName }}
+							<b-badge
+								variant="golden mx-1"
+								pill
+							>{{ notifications.messages + notifications.cartItems + notifications.investments + notifications.businesses }}</b-badge>
+						</template>
+						<b-dropdown-item>
+							<b-avatar rounded class="m-2" />
+							{{ user.firstName+" "+user.lastName}}
+						</b-dropdown-item>
+						<b-dropdown-item-btn>
+							<i class="fas fa-comments fa-fw mr-2 text-golden"></i>Mensajes
+							<b-badge variant="golden mx-1" pill>{{ notifications.messages }}</b-badge>
+						</b-dropdown-item-btn>
+						<b-dropdown-item-btn>
+							<i class="fas fa-shopping-cart fa-fw mr-2 text-golden"></i>Carrito de compra
+							<b-badge variant="golden mx-1" pill>{{ notifications.cartItems }}</b-badge>
+						</b-dropdown-item-btn>
+						<b-dropdown-item-btn>
+							<i class="fas fa-piggy-bank fa-fw mr-2 text-golden"></i>Mis inversiones
+							<b-badge variant="golden mx-1" pill>{{ notifications.investments }}</b-badge>
+						</b-dropdown-item-btn>
+						<b-dropdown-item-btn>
+							<i class="fas fa-suitcase fa-fw mr-2 text-golden"></i>Mis empresas
+							<b-badge variant="golden mx-1" pill>{{ notifications.businesses }}</b-badge>
+						</b-dropdown-item-btn>
+						<b-dropdown-divider />
+						<b-dropdown-item-button>
+							<i class="fas fa-cog fa-fw mr-2 text-primary"></i>Ajustes
+						</b-dropdown-item-button>
+						<b-dropdown-item-button>
+							<i class="fas fa-power-off fa-fw mr-2 text-danger"></i>Salir
+						</b-dropdown-item-button>
+					</b-nav-item-dropdown>
+				</b-nav-form>
 			</b-navbar-nav>
-		</b-navbar>
-
-
-		<b-navbar type="light" variant="silver shadow py-1 px-5">
-
-			<b-navbar-nav>
-				<b-nav-item href="#" class="mr-1" active>
-					<i class="fas fa-home"></i> Inicio
-				</b-nav-item>
-				<b-nav-item href="#" class="mx-1">
-					<i class="fas fa-building"></i> Empresas
-				</b-nav-item>
-				<b-nav-item href="#" class="mx-1">
-					<i class="fas fa-pencil-ruler"></i> Proyectos
-				</b-nav-item>
-				<b-nav-item href="#" class="mx-1">
-					<i class="fas fa-shopping-basket"></i> Productos
-				</b-nav-item>
-				<b-nav-item href="#" class="mx-1">
-					<i class="fas fa-dollar-sign"></i> Financiación
-				</b-nav-item>
-				<b-nav-item href="#" class="mx-1">
-					<i class="fas fa-plus"></i> Más...
-				</b-nav-item>
-			</b-navbar-nav>
-
-			<b-navbar-nav class="ml-auto">
-				<b-form-select class="bg-silver border-0" v-model="selected" :options="options">
-					<template v-slot:first>
-						<b-form-select-option :value="null" disabled>Selecciona tu Estado...</b-form-select-option>
-					</template>
-				</b-form-select>
-			</b-navbar-nav>
-
-		</b-navbar>
-	</div>
+		</b-collapse>
+	</b-navbar>
 </template>
 
 <script>
-const OFFSET = 60;
-const axios = require('axios');
-
 export default {
 	name: "NavBar",
-	data() {
-		return {
-			logged: false,
+	data: () => ({
+		notifications: {
+			messages: 4,
+			cartItems: 7,
 			investments: 2,
-			cartItems: 5,
-			messages: 3,
-			username: "Yomero",
-			showNavbar: true,
-			lastScrollPosition: 0,
-			scrollValue: 0,
-			selected: null,
-			options: [
-				{ value: "AGS", text: "AGUASCALIENTES" },
-				{ value: "BC",  text: "BAJA CALIFORNIA" },
-				{ value: "BCS", text: "BAJA CALIFORNIA SUR" },
-				{ value: "CHI", text: "CHIHUAHUA" },
-				{ value: "CHS", text: "CHIAPAS" },
-				{ value: "CMP", text: "CAMPECHE" },
-				{ value: "CMX", text: "CIUDAD DE MEXICO" },
-				{ value: "COA", text: "COAHUILA" },
-				{ value: "COL", text: "COLIMA" },
-				{ value: "DGO", text: "DURANGO" },
-				{ value: "GRO", text: "GUERRERO" },
-				{ value: "GTO", text: "GUANAJUATO" },
-				{ value: "HGO", text: "HIDALGO" },
-				{ value: "JAL", text: "JALISCO" },
-				{ value: "MCH", text: "MICHOACAN" },
-				{ value: "MEX", text: "ESTADO DE MEXICO" },
-				{ value: "MOR", text: "MORELOS" },
-				{ value: "NAY", text: "NAYARIT" },
-				{ value: "NL",  text: "NUEVO LEON" },
-				{ value: "OAX", text: "OAXACA" },
-				{ value: "PUE", text: "PUEBLA" },
-				{ value: "QR",  text: "QUINTANA ROO" },
-				{ value: "QRO", text: "QUERETARO" },
-				{ value: "SIN", text: "SINALOA" },
-				{ value: "SLP", text: "SAN LUIS POTOSI" },
-				{ value: "SON", text: "SONORA" },
-				{ value: "TAB", text: "TABASCO" },
-				{ value: "TLX", text: "TLAXCALA" },
-				{ value: "TMS", text: "TAMAULIPAS" },
-				{ value: "VER", text: "VERACRUZ" },
-				{ value: "YUC", text: "YUCATAN" },
-				{ value: "ZAC", text: "ZACATECAS" } 
-			]
-		};
-	},
-	mounted() {
-		this.lastScrollPosition = window.pageYOffset;
-		window.addEventListener("scroll", this.onScroll);
-		const viewportMeta = document.createElement("meta");
-		viewportMeta.name = "viewport";
-		viewportMeta.content = "width=device-width, initial-scale=1";
-		document.head.appendChild(viewportMeta);
-	},
-	beforeDestroy() {
-		window.removeEventListener("scroll", this.onScroll);
-	},
-	methods: {
-		onScroll() {
-			if (window.pageYOffset < 0) 
-				return;
-			if (Math.abs(window.pageYOffset - this.lastScrollPosition) < OFFSET) 
-				return;
-			this.showNavbar = window.pageYOffset < this.lastScrollPosition;
-			this.lastScrollPosition = window.pageYOffset;
+			businesses: 1
 		},
-		async getUser() {
-  try {
-	await axios.get('http://localhost:3000/').then(response => (this.username = response.data));
-	this.logged = true;
-  } catch (error) {
-    console.error(error);
-  }
-}
+		user: {
+            logged: false,
+			firstName: "Manuel",
+			lastName: "González Martínez"
+		}
+	}),
+	methods: {
+		logIn() {
+			this.user.logged = true;
+		}
 	}
 };
 </script>
 
-<style>
-#main-navbar {
-	height: 6.5rem;
-	width: 100vw;
-	position: fixed;
-	transform: translate3d(0, 0, 0);
-	transition: 0.1s all ease-out;
-}
-#main-navbar.hidden-navbar {
-	box-shadow: none;
-	transform: translate3d(0, -100%, 0);
+<style lang="scss" scoped>
+a.nav-link.active {
+	color: black !important;
+	background: #fbcd18;
+	border-radius: 0.5rem;
 }
 </style>

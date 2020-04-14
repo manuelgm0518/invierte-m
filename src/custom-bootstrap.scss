@@ -8,6 +8,7 @@ $gold: #fbcd18;
 $gold-light: #fff4c8;
 $white: white;
 $gray-200: #e9ecef !default;
+$dropdown-link-active-bg: $gold;
 
 $theme-colors: () !default;
 $theme-colors: map-merge(
@@ -23,10 +24,11 @@ $theme-colors: map-merge(
 //$navbar-light-color:                $gold !default;
 //$navbar-light-hover-color:          rgba($gold, .7) !default;
 $navbar-light-active-color:         $gold !default;
-$input-btn-focus-color:       rgba($gold, .25) !default;
+
+//$input-btn-focus-color:       rgba($gold, .25) !default;
 
 
-$input-focus-border-color:    lighten($gold, 25%) !default;
+//$input-focus-border-color:    lighten($gold, 25%) !default;
 
 
 $font-family-sans-serif:      "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
