@@ -1,7 +1,7 @@
 <template>
 	<b-navbar type="light" variant="white shadow px-lg-5" toggleable="md" fixed="top">
-		<b-navbar-brand style="width: 12rem;">
-			<img src="../assets/inviertem-logo.svg" class="w-100" />
+		<b-navbar-brand style="height: 3rem">
+			<img src="../assets/inviertem-logo.svg" class="h-100"/>
 		</b-navbar-brand>
 		<b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 		<b-collapse id="nav-collapse" is-nav>
