@@ -59,7 +59,7 @@ export default {
   created(){
     axios.get('http://localhost:3000/api/product/count')
     .then(res => {
-      this.count = res.data.count;
+      this.count = res.data;
       this.getPages();
     });
   },

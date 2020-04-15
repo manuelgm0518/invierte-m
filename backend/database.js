@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+mongoose.set('useFindAndModify', false);
+
 const mongodb_uri = "mongodb+srv://adminxd:adminxd@cluster0-skxxg.mongodb.net/inviertem-db?retryWrites=true&w=majority";
 mongoose.connect(mongodb_uri, { 
 	useUnifiedTopology: true,

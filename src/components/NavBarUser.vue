@@ -265,7 +265,7 @@ export default {
 							lastName: res.data.lastName,
 							notifications: {
 								messages: 5,
-								shoppingCart: 4,
+								shoppingCart: res.data.shoppingCart.length,
 								investments: 9,
 								businesses: 1
 							}
