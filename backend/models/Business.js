@@ -25,7 +25,8 @@ var BusinessSchema = new Schema({
             finishDate: { type: Date, default: Date }
         },
         required: false
-    }
+    },
+    registrationDate: { type: Date, default: Date.now }
 }, { collection:'business' });
 
 module.exports = model('Business', BusinessSchema);

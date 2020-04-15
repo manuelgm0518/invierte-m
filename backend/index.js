@@ -13,5 +13,6 @@ app.use(express.json());
 //Routes
 app.use('/api/user', require('./routes/user'));
 app.use('/api/business', require('./routes/business'));
+app.use('/api/product', require('./routes/product'));
 
 app.listen(app.get('port'), () => { console.log("Server on port " + app.get('port')); });
