@@ -2,16 +2,14 @@
   <div>
     <h1  style="padding-left: 10px;">Catálogo de Productos</h1>
     
-    <div id="ordenarpor" >
-      <p style="padding-left: 10px;">Ordenar por <select v-model="order" v-on:change="getPages">
+      <p id="ordenarpor" >Ordenar por <select v-model="order" v-on:change="getPages">
         <option v-bind:value="['name', 1]" selected>Nombre A - Z</option>
         <option v-bind:value="['name', -1]">Nombre Z - A</option>
         <option v-bind:value="['salePrice', -1]">Mayor precio</option>
         <option v-bind:value="['salePrice', 1]">Menor precio</option>
       </select></p>
-    </div>
 
-    <p style="padding-left: 10px;">Productos por página <select v-model="show" v-on:change="getPages">
+    <p id="cantpagina">Productos por página <select v-model="show" v-on:change="getPages">
         <option value="30">30</option>
         <option value="50">50</option>
         <option value="100">100</option>
@@ -108,7 +106,9 @@ export default {
   font-size: 20px;
   text-shadow: 0px 3px 3px rgba(255,255,255,0.5); */
   background: #fbcd18;
-  width: 270px;
+  border-bottom-right-radius: 20px;
+  width: 248px;
+  padding:  3px;
 }
 
 .productsContainer{
@@ -118,6 +118,7 @@ export default {
   box-sizing: border-box;
   width: 20%;
   margin-right: 3%;
+  margin-bottom: 3%;
   float: left;
   background: #fbcd18;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
@@ -174,4 +175,10 @@ h1 {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 } 
+#cantpagina{
+    background: rgb(204, 200, 200);
+    padding: 3px;
+    width: 248px;
+	border-bottom-right-radius: 20px;
+}
 </style>

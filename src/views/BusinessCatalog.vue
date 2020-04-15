@@ -2,14 +2,14 @@
   <div>
     <h1 style="padding-left: 10px;">Catálogos de negocios</h1>
     
-    <p style="padding-left: 10px;">Ordenar por <select v-model="order" v-on:change="getPages">
+    <p id="ordenarrpor" >Ordenar por <select v-model="order" v-on:change="getPages">
         <option v-bind:value="['name', 1]" selected>Nombre A - Z</option>
         <option v-bind:value="['name', -1]">Nombre Z - A</option>
         <option v-bind:value="['registrationDate', 1]">Registro más reciente</option>
         <option v-bind:value="['registrationDate', -1]">Registro más antiguo</option>
     </select></p>
 
-    <p style="padding-left: 10px;">Negocios por página <select v-model="show" v-on:change="getPages">
+    <p id="cantpaginas">Negocios por página <select v-model="show" v-on:change="getPages">
             <option value="30" selected>30</option>
             <option value="50">50</option>
             <option value="100">100</option>
@@ -163,4 +163,16 @@ h1 {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 } 
+#ordenarrpor{
+    padding: 3px;
+	background: #fbcd18;
+	width: 340px;
+	border-bottom-right-radius: 20px;
+}
+#cantpaginas{
+    background: rgb(204, 200, 200);
+    padding: 3px;
+    width: 340px;
+	border-bottom-right-radius: 20px;
+}
 </style>
