@@ -21,7 +21,9 @@
                 {{ bus.name }}
             </div>
             <div class="businessImage">
+                <center>
                 <img v-bind:src="getImage(bus.imagesURL)">
+                </center>
             </div>
         </div>
     </div>
@@ -102,23 +104,28 @@ export default {
 
 <style>
 .business{
-    box-sizing: border-box;
-    float: left;
-    border-radius: 3px;
+      box-sizing: border-box;
     width: 20%;
-    height: 150px;
-    padding: 5px;
+    margin-right: 3%;
+    float: left;
+    background: #fbcd18;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
     cursor: pointer;
 }
 .business:hover{
-    background-color: rgb(233, 233, 233);
+    background-color: #ddb514;
+    transform: scale(1.03);
 }
 .businessContainer{
     margin: 10px;
 }
 .businessImage img{
-    height: 100px;
+    /* height: 100px; */
+      height: 150px;
+    overflow: hidden;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+    background: #fbcd18;
 }
 ul{
     list-style: none;
@@ -140,4 +147,12 @@ ul li .pagination{
 ul li .pagination:hover{
     color: blue;
 }
+h1 {  
+  text-align: center;
+  font-size: 72px;  
+  background: -webkit-linear-gradient(left top, #fb9918, yellow);
+  background: linear-gradient(to bottom right, #fb9918, yellow);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+} 
 </style>

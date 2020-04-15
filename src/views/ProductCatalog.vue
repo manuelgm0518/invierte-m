@@ -1,13 +1,15 @@
 <template>
   <div>
-    <h1 style="padding-left: 10px;">Catálogo de Productos</h1>
-
-    <p style="padding-left: 10px;">Ordenar por <select v-model="order" v-on:change="getPages">
+    <h1  style="padding-left: 10px;">Catálogo de Productos</h1>
+    
+    <div id="ordenarpor" >
+      <p style="padding-left: 10px;">Ordenar por <select v-model="order" v-on:change="getPages">
         <option v-bind:value="['name', 1]" selected>Nombre A - Z</option>
         <option v-bind:value="['name', -1]">Nombre Z - A</option>
         <option v-bind:value="['salePrice', -1]">Mayor precio</option>
         <option v-bind:value="['salePrice', 1]">Menor precio</option>
       </select></p>
+    </div>
 
     <p style="padding-left: 10px;">Productos por página <select v-model="show" v-on:change="getPages">
         <option value="30">30</option>
@@ -96,19 +98,35 @@ export default {
 </script>
 
 <style>
+
+#ordenarpor{
+  /* color: transparent;
+  background: #fbcd18;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  font-size: 20px;
+  text-shadow: 0px 3px 3px rgba(255,255,255,0.5); */
+  background: #fbcd18;
+  width: 270px;
+}
+
 .productsContainer{
   padding: 10px;
 }
 .product{
   box-sizing: border-box;
   width: 20%;
+  margin-right: 3%;
   float: left;
+  background: #fbcd18;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   cursor: pointer;
 }
 .product:hover{
-  background-color: rgb(240, 240, 240);
+  background-color: #ddb514;
+  transform: scale(1.03);
 }
 .productName{
   padding: 5px;
@@ -116,11 +134,17 @@ export default {
 }
 .productPrice{
   padding: 5px;
+  font-size: 20px;
   text-align: center;
+  color: rgb(0, 0, 0);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
 }
 .productImage{
   height: 150px;
   overflow: hidden;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+  background: rgb(223, 219, 219);
 }
 .productImage img{
   width: 100%;
@@ -140,4 +164,12 @@ export default {
 .paginationPage:hover{
   color: blue;
 }
+h1 {  
+  text-align: center;
+  font-size: 72px;  
+  background: -webkit-linear-gradient(left top, #fb9918, yellow);
+  background: linear-gradient(to bottom right, #fb9918, yellow);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+} 
 </style>

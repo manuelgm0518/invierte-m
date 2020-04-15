@@ -95,15 +95,24 @@ export default {
 	padding: 10px;
 }
 .vacancies{
-	box-sizing: border-box;
+	/* box-sizing: border-box;
 	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
 	border-radius: 5px;
 	float: left;
 	width: 20%;
-	cursor: pointer;
+	cursor: pointer; */
+	box-sizing: border-box;
+    width: 20%;
+    margin-right: 3%;
+    float: left;
+    background: #fbcd18;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    cursor: pointer;
 }
 .vacancies:hover{
-	background-color: rgb(240, 240, 240);
+    background-color: #ddb514;
+    transform: scale(1.03);
 }
 .vacanciesName{
 	padding: 5px;
@@ -128,4 +137,12 @@ export default {
 .paginationPage:hover{
 	color: blue;
 }
+h1 {  
+  text-align: center;
+  font-size: 72px;  
+  background: -webkit-linear-gradient(left top, #fb9918, yellow);
+  background: linear-gradient(to bottom right, #fb9918, yellow);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+} 
 </style>
