@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <img class="productImageN" v-bind:src="product.imageURL">
     <div class="productInformationN">
       <h1 class="productNameN">{{ product.name }}</h1>
@@ -54,6 +54,10 @@ export default {
 </script>
 
 <style>
+body{
+  background: rgba(236, 229, 190, 0.548);
+}
+
 .productImageN{
   float: left;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
@@ -61,6 +65,7 @@ export default {
   margin: 10px;
   margin-top: 20px;
   width: 30%;
+  background: white;
 }
 .productInformationN{
   box-sizing: border-box;
@@ -70,19 +75,27 @@ export default {
   position: relative;
 }
 .productNameN{
+  text-align: center;
+  background: -webkit-linear-gradient(left top, #fb9918, yellow);
+  background: linear-gradient(to bottom right, #fb9918, yellow);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-top: 30px;
 }
 .productPriceN{
-  box-shadow: 0px 0px 4px rgba(75, 82, 0, 0.5);
+  box-shadow: 0px 0px 4px rgb(255, 51, 0);
   position: static;
   padding: 3px 8px;
   border-radius: 3px;
   display: inline-block;
+  background: white;
 }
 .productDescriptionN{
-  border: 1px solid gray;
+  border: 3px solid #fbcd18;
   margin-top: 10px;
   padding: 10px;
+  border-radius: 10px;
+  background: white;
 }
 .productBuyN{
   margin: 10px;
@@ -91,5 +104,9 @@ export default {
   margin-left: 10px;
   clear: both;
   margin-top: 10px;
+  padding: 10px;
+  border: 3px solid rgb(51, 51, 77);
+  border-radius: 10px;
+  background: white;
 }
 </style>
