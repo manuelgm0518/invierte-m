@@ -19,7 +19,7 @@
 					{{ vacant.name }}
 				</div>
 				<div class="vacanciesBusiness">
-					{{ getBusiness(vacant.business) }}
+					Negocio: {{ vacant.business.name }}
 				</div>
 			</div>
 		</div>
@@ -85,14 +85,6 @@ export default {
 		},
 		sendVacant(_id){
 			alert(_id);
-		},
-		getBusiness(_id){
-			var name = 'Aquí está el error xd';
-			axios.get('http://localhost:3000/api/business/' + _id)
-			.then(res => {
-				name = res.data.name;
-			});
-			return name;
 		}
 	}
 };
