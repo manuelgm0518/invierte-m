@@ -9,7 +9,6 @@ var BusinessSchema = new Schema({
     description: String,
     content: [{ title: String, body: String }],
     updates: [{
-        owner: { type: Schema.Types.ObjectId, ref: 'users'},
         date: { type: Date, default: Date },
         content: String
     }],
