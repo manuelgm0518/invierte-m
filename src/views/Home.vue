@@ -1,11 +1,15 @@
 <template>
   <div>
-    <h1>Inicio</h1>
+    <PagPrincipal></PagPrincipal>
   </div>
 </template>
 
 <script>
+import PagPrincipal from '@/views/PagPrincipal.vue'
 export default {
-  name: "Home"
+  name: "Home",
+  components :{
+    PagPrincipal
+  }
 }
 </script>
