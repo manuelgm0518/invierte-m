@@ -9,7 +9,7 @@ const Router = new VueRouter({
 	routes: [{
 		path: '/', name: 'Inicio',
 		component: () => import('../views/Home.vue')
-	},{
+	}, {
 		path: '/search', name: 'Buscar',
 		component: () => import('../views/Search.vue')
 	}, {
@@ -33,7 +33,14 @@ const Router = new VueRouter({
 	}, {
 		path: '/start-business', name: 'Emprender',
 		component: () => import('../views/StartBusiness.vue')
-	}]
+	}],
+	scrollBehavior(to, from, savedPosition) {
+		return new Promise((resolve) => {
+			setTimeout(() => {
+				resolve(savedPosition ? savedPosition : { x: 0, y: 0 })
+			}, 330)
+		})
+	}
 });
 
 export default Router;

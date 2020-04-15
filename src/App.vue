@@ -1,9 +1,9 @@
 <template>
-  <div id="app">
+  <div id="app" class="bg-light">
     <NavBar/>
-    
-    <router-view class="bg-light" style="margin-top: 4rem"></router-view>
-    
+    <transition name="fade">
+      <router-view style="padding-top: 4rem;"/>
+    </transition>
   </div>
 </template>
 
@@ -17,4 +17,10 @@ export default {
 </script>
 
 <style lang="scss">
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .33s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+    opacity: 0
+}
 </style>
