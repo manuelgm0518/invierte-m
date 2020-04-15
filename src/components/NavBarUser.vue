@@ -293,29 +293,27 @@ export default {
 			localStorage.clear();
 		},
 		updateVuexStore() {
-			axios
-				.get("http://localhost:3000/api/user", {
-					headers: { token: localStorage.getItem("token") }
-				})
-				.then(res => {
-					if (res.status == 200) {
-						if (res.data.unauthorized) this.logOutUser();
-						else {
-							this.$store.commit("userLogIn", {
-								id: res.data._id,
-								avatarURL: res.data.avatarURL,
-								firstName: res.data.firstName,
-								lastName: res.data.lastName,
-								notifications: {
-									messages: 5,
-									shoppingCart: 4,
-									investments: 9,
-									businesses: 1
-								}
-							});
-						}
+			axios.get("http://localhost:3000/api/user", { headers: { token:localStorage.getItem('token') }})
+			.then(res => {
+				if (res.status == 200) {
+					if(res.data.unauthorized)
+						this.logOutUser();
+					else{
+						this.$store.commit("userLogIn", {
+							id: res.data._id,
+							avatarURL: res.data.avatarURL,
+							firstName: res.data.firstName,
+							lastName: res.data.lastName,
+							notifications: {
+								messages: 5,
+								shoppingCart: res.data.shoppingCart.length,
+								investments: 9,
+								businesses: 1
+							}
+						});
 					}
-				});
+			}
+			});
 		}
 	}
 };

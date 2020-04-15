@@ -32,6 +32,21 @@ router.post('/', (req, res) => {
     });
 });
 
+router.get('/', (req, res) => {
+    let token = req.headers.token;
+    jwt.verify(token, process.env.SECRET_KEY, (err, decode) => {
+        if (err) {
+            res.json({unauthorized:true});
+        }
+        else {
+            User.findOne({_id:decode._id})
+            .then(data => {
+                res.json(data);
+            });
+        }
+    });
+});
+
 router.post('/logIn', (req, res) => {
     User.findOne({
         email: req.body.email
@@ -42,9 +57,7 @@ router.post('/logIn', (req, res) => {
                     const payload = {
                         _id: user._id
                     };
-                    let token = jwt.sign(payload, process.env.SECRET_KEY, {
-                        expiresIn: 1440
-                    });
+                    let token = jwt.sign(payload, process.env.SECRET_KEY);
                     res.send(token);
                 }
                 else {
@@ -60,18 +73,12 @@ router.post('/logIn', (req, res) => {
         });
 });
 
-router.get('/', (req, res) => {
-    let token = req.headers.token;
-    jwt.verify(token, process.env.SECRET_KEY, (err, decode) => {
-        if (err) {
-            res.json({unauthorized:true});
-        }
-        else {
-            User.findOne({_id:decode._id})
-            .then(data => {
-                res.json(data);
-            });
-        }
+router.put('/addShoppingCart/:id', (req, res) => {
+    User.findOneAndUpdate({ "_id": req.params.id},{ "$push": { "shoppingCart": req.body } }, (err, data) => {
+        if(err)
+            res.status(400).json(err);
+        else
+            res.json(data);
     });
 });
 

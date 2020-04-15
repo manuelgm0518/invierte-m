@@ -78,7 +78,7 @@ export default {
 			this.getVacancies();
 		},
 		changePage(page){
-			if(page > 1 && page <= this.numPages && page != this.page){
+			if(page >= 1 && page <= this.numPages && page != this.page){
 				this.actual = page;
 				this.getPages();
 			}
