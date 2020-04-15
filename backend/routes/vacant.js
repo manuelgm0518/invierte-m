@@ -28,7 +28,7 @@ router.get('/count', (req, res) => {
 });
 
 router.post('/interval', (req, res) => {
-    Vacant.find({}).skip(req.body.min).limit(req.body.max).sort([req.body.order]).exec((err, data) => {
+    Vacant.find({}).populate('business').skip(req.body.min).limit(req.body.max).sort([req.body.order]).exec((err, data) => {
         if(err){
             res.status(400).json(err);
             return;
