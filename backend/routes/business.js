@@ -39,4 +39,16 @@ router.post('/interval', (req, res) => {
     });
 });
 
+router.get('/:id', (req, res) => {
+    Business.findOne({_id:req.params.id},(err, data) => {
+        if(err){
+            res.json(err);
+            return;
+        }
+        else{
+            res.json(data);
+        }
+    });
+});
+
 module.exports = router;

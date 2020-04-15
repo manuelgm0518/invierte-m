@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const Product = require('../models/Product');
+const Vacant = require('../models/Vacant');
 
 router.post('/', (req, res) => {
-    Product.create(req.body, (err, doc) => {
+    Vacant.create(req.body, (err, doc) => {
         if(err){
             res.status(400).json(err);
             return;
@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
 });
 
 router.get('/count', (req, res) => {
-    Product.countDocuments({}, (err, c) => {
+    Vacant.countDocuments({}, (err, c) => {
         if(err){
             res.status(400).json(err);
             return;
@@ -28,7 +28,7 @@ router.get('/count', (req, res) => {
 });
 
 router.post('/interval', (req, res) => {
-    Product.find({}).skip(req.body.min).limit(req.body.max).sort([req.body.order]).exec((err, data) => {
+    Vacant.find({}).skip(req.body.min).limit(req.body.max).sort([req.body.order]).exec((err, data) => {
         if(err){
             res.status(400).json(err);
             return;

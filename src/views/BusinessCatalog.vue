@@ -2,14 +2,14 @@
   <div>
     <h1 style="padding-left: 10px;">Catálogos de negocios</h1>
     
-    <p style="padding-left: 10px;">Ordenar por <select v-model="order" v-on:change="getBusiness">
+    <p style="padding-left: 10px;">Ordenar por <select v-model="order" v-on:change="getPages">
         <option v-bind:value="['name', 1]" selected>Nombre A - Z</option>
         <option v-bind:value="['name', -1]">Nombre Z - A</option>
         <option v-bind:value="['registrationDate', 1]">Registro más reciente</option>
         <option v-bind:value="['registrationDate', -1]">Registro más antiguo</option>
     </select></p>
 
-    <p style="padding-left: 10px;">Negocios por página <select v-model="show" v-on:change="getBusiness">
+    <p style="padding-left: 10px;">Negocios por página <select v-model="show" v-on:change="getPages">
             <option value="30" selected>30</option>
             <option value="50">50</option>
             <option value="100">100</option>
@@ -82,6 +82,7 @@ export default {
         },
         getPages(){
             this.numPages = parseInt((this.count - 1) / this.show) + 1;
+            this.pages = [];
             for(var i = this.actual - 4 > 1?this.actual - 4:1; i <= (this.actual + 5 <= this.numPages?this.actual + 5:this.numPages); i++)
                 this.pages.push(i);
             this.getBusiness();

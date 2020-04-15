@@ -2,14 +2,14 @@
   <div>
     <h1 style="padding-left: 10px;">Catálogo de Productos</h1>
 
-    <p style="padding-left: 10px;">Ordenar por <select v-model="order" v-on:change="getProducts">
+    <p style="padding-left: 10px;">Ordenar por <select v-model="order" v-on:change="getPages">
         <option v-bind:value="['name', 1]" selected>Nombre A - Z</option>
         <option v-bind:value="['name', -1]">Nombre Z - A</option>
         <option v-bind:value="['salePrice', -1]">Mayor precio</option>
         <option v-bind:value="['salePrice', 1]">Menor precio</option>
       </select></p>
 
-    <p style="padding-left: 10px;">Productos por página <select v-model="show" v-on:change="getProducts">
+    <p style="padding-left: 10px;">Productos por página <select v-model="show" v-on:change="getPages">
         <option value="30">30</option>
         <option value="50">50</option>
         <option value="100">100</option>
@@ -77,6 +77,7 @@ export default {
     },
     getPages(){
       this.numPages = parseInt((this.count - 1) / this.show) + 1;
+      this.pages = [];
       for(var i = this.actual - 4 > 1?this.actual - 4:1; i <= (this.actual + 5 <= this.numPages?this.actual + 5:this.numPages); i++)
         this.pages.push(i);
       this.getProducts();
@@ -99,6 +100,7 @@ export default {
   padding: 10px;
 }
 .product{
+  box-sizing: border-box;
   width: 20%;
   float: left;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
