@@ -9,7 +9,6 @@ var BusinessSchema = new Schema({
     description: String,
     content: [{ title: String, body: String }],
     updates: [{
-        owner: { type: Schema.Types.ObjectId, ref: 'users'},
         date: { type: Date, default: Date },
         content: String
     }],
@@ -22,7 +21,8 @@ var BusinessSchema = new Schema({
             goal: { type: Number, default: 0.00 },
             collected: { type: Number, default: 0.00 },
             startDate: { type: Date, default: Date },
-            finishDate: { type: Date, default: Date }
+            finishDate: { type: Date, default: Date },
+            investors: { type: Number, default: 0 }
         },
         required: false
     },

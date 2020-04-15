@@ -61,8 +61,8 @@ export default {
 	methods:{
 		getVacancies(){
 			let interval = {
-				min: 0,
-				max: 30,
+				min: (this.actual - 1) * this.show,
+                max: (this.actual) * this.show,
 				order:this.order
 			};
 			axios.post('http://localhost:3000/api/vacant/interval', interval)
@@ -78,7 +78,7 @@ export default {
 			this.getVacancies();
 		},
 		changePage(page){
-			if(page > 1 && page <= this.numPages && page != this.page){
+			if(page >= 1 && page <= this.numPages && page != this.page){
 				this.actual = page;
 				this.getPages();
 			}

@@ -59,7 +59,7 @@ export default {
   created(){
     axios.get('http://localhost:3000/api/product/count')
     .then(res => {
-      this.count = res.data.count;
+      this.count = res.data;
       this.getPages();
     });
   },
@@ -83,7 +83,7 @@ export default {
       this.getProducts();
     },
     changePage(page){
-      if(page > 1 && page <= this.numPages && page != this.page){
+      if(page >= 1 && page <= this.numPages && page != this.page){
         this.actual = page;
         this.getPages();
       }

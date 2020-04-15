@@ -4,11 +4,12 @@
     <div class="productInformationN">
       <h1 class="productNameN">{{ product.name }}</h1>
       <div class="productPriceN">Precio: $ {{product.salePrice }} MXN</div>
+      <p class="productBuyN">Cantidad: <input type="number" value="1" min="1" max="100" v-model="quantity"> <button type="button" v-on:click="addShopingCart">Añadir al carrito</button></p>
       <div class="productDescriptionN">{{ product.description }}</div>
-      <div class="businessN">
-        <div class="businessNameN">Negocio: {{ business.name }}</div>
-        <div class="businessLocationN">Ubicación: {{ business.location }}</div>
-      </div>
+    </div>
+    <div class="businessN">
+      <div class="businessNameN">Negocio: {{ business.name }}</div>
+      <div class="businessLocationN">Ubicación: {{ business.location }}</div>
     </div>
   </div>
 </template>
@@ -22,7 +23,8 @@ export default {
     return {
       id:this.$route.params.id,
       product:{},
-      business:{}
+      business:{},
+      quantity:1
     }
   },
   created(){
@@ -31,6 +33,22 @@ export default {
       this.product = res.data;
       this.business = this.product.business
     });
+  },
+  methods:{
+    addShopingCart(){
+      if(!this.$store.state.user.id){
+        alert('Debe iniciar sesión para poder agregar el producto al carrito');
+      }
+      else{
+        let newShopingCart = {
+            product:this.product._id,
+            quantity:this.quantity
+        }
+        axios.put('http://localhost:3000/api/user/addShoppingCart/' + this.$store.state.user.id, newShopingCart);
+        alert('Aquí te mandaría a la pagina de carrito.');
+        this.$router.push('/');
+      }
+    }
   }
 }
 </script>
@@ -79,7 +97,12 @@ body{
   border-radius: 10px;
   background: white;
 }
+.productBuyN{
+  margin: 10px;
+}
 .businessN{
+  margin-left: 10px;
+  clear: both;
   margin-top: 10px;
   padding: 10px;
   border: 3px solid rgb(51, 51, 77);
