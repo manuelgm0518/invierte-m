@@ -5,9 +5,10 @@
 		toggleable="md"
 		fixed="top"
 	>
-		<b-navbar-brand style="height: 3rem">
+		<b-navbar-brand :to="{'name':'Inicio'}" style="height: 3rem">
 			<img src="../assets/inviertem-logo.svg" class="h-100" />
 		</b-navbar-brand>
+
 		<b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 		<b-collapse id="nav-collapse" ref="NavCollapse" is-nav>
 			<b-navbar-nav class="ml-auto mr-md-2 mt-2 mt-md-0">
@@ -18,6 +19,7 @@
 					:title="nav.name"
 					:to="{'name':nav.name}"
 					exact-active-class="active"
+					class="mx-md-1"
 				>
 					<i :class="nav.icon + ' mx-2 mx-md-0 fa-fw'" />
 					<span class="d-md-none ml-2">{{ nav.name }}</span>
