@@ -61,7 +61,7 @@ export default {
 	methods:{
 		getVacancies(){
 			let interval = {
-				min: (this.actual - 1) * this.show + 1,
+				min: (this.actual - 1) * this.show,
                 max: (this.actual) * this.show,
 				order:this.order
 			};
