@@ -5,8 +5,8 @@
     <p style="padding-left: 10px;">Ordenar por <select v-model="order" v-on:change="getPages">
         <option v-bind:value="['name', 1]" selected>Nombre A - Z</option>
         <option v-bind:value="['name', -1]">Nombre Z - A</option>
-        <option v-bind:value="['registrationDate', 1]">Registro más reciente</option>
-        <option v-bind:value="['registrationDate', -1]">Registro más antiguo</option>
+        <option v-bind:value="['registrationDate', -1]">Registro más reciente</option>
+        <option v-bind:value="['registrationDate', 1]">Registro más antiguo</option>
     </select></p>
 
     <p style="padding-left: 10px;">Negocios por página <select v-model="show" v-on:change="getPages">
@@ -67,6 +67,7 @@ export default {
                 max: (this.actual) * this.show,
                 order: this.order
             }
+            console.log(interval);
             axios.post('http://localhost:3000/api/business/interval', interval)
             .then(res => {
                 this.business = res.data;
