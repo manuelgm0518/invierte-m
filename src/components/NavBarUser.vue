@@ -1,6 +1,5 @@
 <template>
 	<div>
-		
 		<b-nav-item-dropdown ref="accessDropdown" no-caret right v-if="!$store.state.user.id">
 			<template v-slot:button-content>
 				<b-button variant="outline-golden">
@@ -139,7 +138,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
 	name: "NavBarUser",
@@ -157,91 +156,133 @@ export default {
 		}
 	}),
 	created() {
-		if (localStorage.getItem("token") != null){
+		if (localStorage.getItem("token") != null) {
 			this.updateVuexStore();
 		}
 	},
 	methods: {
+		toast(title, message, variant = null, toaster = "b-toaster-bottom-right") {
+			this.$bvToast.toast(message, {
+				title,
+				variant,
+				toaster,
+				solid: true
+			});
+		},
 		logInUser() {
-			if(this.logIn.email == ''){
-				alert('Debe de llenar el campo con un usuario.'); //Falta ponerlo de una manera más bonita
+			var failed = false;
+			if (this.logIn.email == "") {
+				this.toast(
+					"Error del formulario",
+					"Debe llenar el campo con un correo",
+					"danger"
+				);
+				failed = true;
 			}
-			else if(this.logIn.password == ''){
-				alert('Debe de llenar el campo con una contraseña.'); //Falta ponerlo de una manera más bonita
+			if (this.logIn.password == "") {
+				this.toast(
+					"Error del formulario",
+					"Debe llenar el campo con una contraseña",
+					"danger"
+				);
+				failed = true;
 			}
-			else{
+			if (!failed) {
 				let logUser = {
-					email:this.logIn.email,
-					password:this.logIn.password
-				}
-				axios.post('http://localhost:3000/api/user/login', logUser)
-				.then(res => {
-					if(res.status == 200){
-						if(res.data.error == 'User does not exist'){
-							alert('Usuario o contraseña incorrecto'); //Falta ponerlo de una manera más bonita
+					email: this.logIn.email,
+					password: this.logIn.password
+				};
+				axios
+					.post("http://localhost:3000/api/user/login", logUser)
+					.then(res => {
+						if (res.status == 200) {
+							if (res.data.error == "User does not exist") {
+								this.toast(
+									"Error del formulario",
+									"Correo o contraseña incorrectos",
+									"danger"
+								);
+							} else {
+								localStorage.setItem("token", res.data);
+								this.updateVuexStore();
+								this.toast("Información correcta", "Bienvenido", "success");
+							}
 						}
-						else{
-							localStorage.setItem('token', res.data);
-							this.updateVuexStore();
+					});
+			}
+		},
+		signUpUser() {
+			if (
+				this.signUp.email.indexOf("@") == -1 ||
+				this.signUp.email.indexOf(".") == -1
+			) {
+				this.toast(
+					"Error del formulario",
+					"Debe llenar el formulario con un correo",
+					"danger"
+				);
+			} else if (this.signUp.password.length < 8) {
+				this.toast(
+					"Error del formulario",
+					"La contraseña debe tener al menos 8 caracteres",
+					"danger"
+				);
+			} else if (this.signUp.password != this.signUp.confirmPassword) {
+				this.toast(
+					"Error del formulario",
+					"Las contraseñas no coinciden",
+					"danger"
+				);
+			} else if (this.signUp.firstName == "" || this.signUp.lastName == "") {
+				this.toast(
+					"Error del formulario",
+					"Debe llenar todos los campos",
+					"danger"
+				);
+			} else {
+				let newUser = {
+					firstName: this.signUp.firstName,
+					lastName: this.signUp.lastName,
+					email: this.signUp.email,
+					password: this.signUp.password
+				};
+				axios.post("http://localhost:3000/api/user", newUser).then(res => {
+					if (res.status == 200) {
+						if (res.data.error == "User already exists") {
+							this.toast(
+								"Error del formulario",
+								"El usuario ya existe",
+								"danger"
+							);
+						} else {
+							let logUser = {
+								email: this.signUp.email,
+								password: this.signUp.password
+							};
+							axios
+								.post("http://localhost:3000/api/user/login", logUser)
+								.then(res => {
+									if (res.status == 200) {
+										if (res.data.error == "User does not exist") {
+											location.reload();
+										} else {
+											localStorage.setItem("token", res.data);
+											this.updateVuexStore();
+											this.toast("Información correcta", "Bienvenido", "success");
+										}
+									}
+								});
 						}
 					}
 				});
 			}
 		},
-		signUpUser() {
-			if(this.signUp.email.indexOf('@') == -1 || this.signUp.email.indexOf('.') == -1){
-				alert('Debe de llenar el campo con un correo'); //Falta ponerlo de una manera más bonita
-			}
-			else if(this.signUp.password.length < 8){
-				alert('La contraseña debe de tener más de 8 caracteres.'); //Falta ponerlo de una manera más bonita
-			}
-			else if(this.signUp.password != this.signUp.confirmPassword){
-				alert('La contraseñas no coinciden.'); //Falta ponerlo de una manera más bonita
-			}
-			else if(this.signUp.firstName == '' || this.signUp.lastName == ''){
-				alert('Debe de llenar todos los campos.'); //Falta ponerlo de una manera más bonita
-			}
-			else{
-				let newUser = {
-                    firstName: this.signUp.firstName,
-                    lastName: this.signUp.lastName,
-                    email: this.signUp.email,
-                    password: this.signUp.password
-                }
-                axios.post('http://localhost:3000/api/user', newUser)
-                .then(res => {
-                    if(res.status == 200){
-                        if(res.data.error == 'User already exists'){
-                            alert('El usuario ya existe.'); //Falta ponerlo de una manera más bonita
-                        }
-                        else{
-							let logUser = {
-								email:this.signUp.email,
-								password:this.signUp.password
-							}
-							axios.post('http://localhost:3000/api/user/login', logUser)
-							.then(res => {
-								if(res.status == 200){
-									if(res.data.error == 'User does not exist'){
-										location.reload();
-									}
-									else{
-										localStorage.setItem('token', res.data);
-										this.updateVuexStore();
-									}
-								}
-							});
-                        }
-                    }
-                });
-			}
-		},
 		logOutUser() {
 			this.$store.commit("userLogIn", {
 				id: null,
-				avatarURL: '',
-				firstName: '',
-				lastName: '',
+				avatarURL: "",
+				firstName: "",
+				lastName: "",
 				notifications: {
 					messages: 0,
 					shoppingCart: 0,
@@ -252,27 +293,29 @@ export default {
 			localStorage.clear();
 		},
 		updateVuexStore() {
-			axios.get("http://localhost:3000/api/user", { headers: { token: localStorage.getItem('token') }})
-			.then(res => {
-				if (res.status == 200) {
-					if(res.data.unauthorized)
-						this.logOutUser();
-					else{
-						this.$store.commit("userLogIn", {
-							id: res.data._id,
-							avatarURL: res.data.avatarURL,
-							firstName: res.data.firstName,
-							lastName: res.data.lastName,
-							notifications: {
-								messages: 5,
-								shoppingCart: 4,
-								investments: 9,
-								businesses: 1
-							}
-						});
+			axios
+				.get("http://localhost:3000/api/user", {
+					headers: { token: localStorage.getItem("token") }
+				})
+				.then(res => {
+					if (res.status == 200) {
+						if (res.data.unauthorized) this.logOutUser();
+						else {
+							this.$store.commit("userLogIn", {
+								id: res.data._id,
+								avatarURL: res.data.avatarURL,
+								firstName: res.data.firstName,
+								lastName: res.data.lastName,
+								notifications: {
+									messages: 5,
+									shoppingCart: 4,
+									investments: 9,
+									businesses: 1
+								}
+							});
+						}
 					}
-				}
-			});
+				});
 		}
 	}
 };

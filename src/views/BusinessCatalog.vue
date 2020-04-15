@@ -94,7 +94,7 @@ export default {
             }
         },
         sendBusiness(_id){
-            alert(_id);
+            this.$router.push({'name': 'Empresa', 'params': { 'id':_id }});
         }
     }
 }

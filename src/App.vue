@@ -4,14 +4,17 @@
     <transition name="fade">
       <router-view style="padding-top: 4rem;"/>
     </transition>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import NavBar from '../src/components/NavBar';
+import Footer from '../src/components/Footer';
 export default {
   components: {
-    NavBar
+    NavBar,
+    Footer
   }
 }
 </script>
