@@ -53,7 +53,6 @@
 </template>
 
 <script>
-//import axios from "axios";
 import NavBarUser from "./NavBarUser";
 
 export default {
@@ -70,27 +69,7 @@ export default {
 			{ name: "Vacantes", icon: "fas fa-user-tag" },
 			{ name: "Emprender", icon: "fas fa-chart-line" }
 		]
-	}),
-	created() {
-		/*if (localStorage.getItem("token") == null) {
-			this.user.logged = false;
-		} else {
-			this.user.logged = true;
-			axios
-				.get("http://localhost:3000/api/user", {
-					headers: { token: localStorage.getItem("token") }
-				})
-				.then(res => {
-					if (res.status == 200) {
-						this.user.firstName = res.data.firstName;
-						this.user.lastName = res.data.lastName;
-					} else {
-						localStorage.clear();
-						location.reload();
-					}
-				});
-		}*/
-	}
+	})
 };
 </script>
 

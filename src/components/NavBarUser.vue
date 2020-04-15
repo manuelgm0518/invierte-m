@@ -139,6 +139,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
 	name: "NavBarUser",
 	data: () => ({
@@ -154,32 +156,121 @@ export default {
 			confirmPassword: ""
 		}
 	}),
+	created() {
+		if (localStorage.getItem("token") != null){
+			this.updateVuexStore();
+		}
+	},
 	methods: {
 		logInUser() {
-			//Aquí logueas al usuario
-			//Los datos del formulario están guardados en logIn
-			this.updateVuexStore(); //Cuando actualizas los datos de Vuex, se actualiza la barra
+			if(this.logIn.email == ''){
+				alert('Debe de llenar el campo con un usuario.'); //Falta ponerlo de una manera más bonita
+			}
+			else if(this.logIn.password == ''){
+				alert('Debe de llenar el campo con una contraseña.'); //Falta ponerlo de una manera más bonita
+			}
+			else{
+				let logUser = {
+					email:this.logIn.email,
+					password:this.logIn.password
+				}
+				axios.post('http://localhost:3000/api/user/login', logUser)
+				.then(res => {
+					if(res.status == 200){
+						if(res.data.error == 'User does not exist'){
+							alert('Usuario o contraseña incorrecto'); //Falta ponerlo de una manera más bonita
+						}
+						else{
+							localStorage.setItem('token', res.data);
+							this.updateVuexStore();
+						}
+					}
+				});
+			}
 		},
 		signUpUser() {
-			//Aquí registrar al usuairio
-			//Los datos del formulario están en signUp
+			if(this.signUp.email.indexOf('@') == -1 || this.signUp.email.indexOf('.') == -1){
+				alert('Debe de llenar el campo con un correo'); //Falta ponerlo de una manera más bonita
+			}
+			else if(this.signUp.password.length < 8){
+				alert('La contraseña debe de tener más de 8 caracteres.'); //Falta ponerlo de una manera más bonita
+			}
+			else if(this.signUp.password != this.signUp.confirmPassword){
+				alert('La contraseñas no coinciden.'); //Falta ponerlo de una manera más bonita
+			}
+			else if(this.signUp.firstName == '' || this.signUp.lastName == ''){
+				alert('Debe de llenar todos los campos.'); //Falta ponerlo de una manera más bonita
+			}
+			else{
+				let newUser = {
+                    firstName: this.signUp.firstName,
+                    lastName: this.signUp.lastName,
+                    email: this.signUp.email,
+                    password: this.signUp.password
+                }
+                axios.post('http://localhost:3000/api/user', newUser)
+                .then(res => {
+                    if(res.status == 200){
+                        if(res.data.error == 'User already exists'){
+                            alert('El usuario ya existe.'); //Falta ponerlo de una manera más bonita
+                        }
+                        else{
+							let logUser = {
+								email:this.signUp.email,
+								password:this.signUp.password
+							}
+							axios.post('http://localhost:3000/api/user/login', logUser)
+							.then(res => {
+								if(res.status == 200){
+									if(res.data.error == 'User does not exist'){
+										location.reload();
+									}
+									else{
+										localStorage.setItem('token', res.data);
+										this.updateVuexStore();
+									}
+								}
+							});
+                        }
+                    }
+                });
+			}
 		},
 		logOutUser() {
-			//método para cerrar sesión
+			this.$store.commit("userLogIn", {
+				id: null,
+				avatarURL: '',
+				firstName: '',
+				lastName: '',
+				notifications: {
+					messages: 0,
+					shoppingCart: 0,
+					investments: 0,
+					businesses: 0
+				}
+			});
+			localStorage.clear();
 		},
 		updateVuexStore() {
-			//Cuando el usuario inicie sesión, guardas la información en Vuex
-			//La de aquí es de prueba
-			this.$store.commit("userLogIn", {
-				id: "kkdvak",
-				avatarURL: "https://image.flaticon.com/icons/svg/1063/1063196.svg",
-				firstName: "Manuel",
-				lastName: "González Martínez",
-				notifications: {
-					messages: 5,
-					shoppingCart: 4,
-					investments: 2,
-					businesses: 2
+			axios.get("http://localhost:3000/api/user", { headers: { token: localStorage.getItem('token') }})
+			.then(res => {
+				if (res.status == 200) {
+					if(res.data.unauthorized)
+						this.logOutUser();
+					else{
+						this.$store.commit("userLogIn", {
+							id: res.data._id,
+							avatarURL: res.data.avatarURL,
+							firstName: res.data.firstName,
+							lastName: res.data.lastName,
+							notifications: {
+								messages: 5,
+								shoppingCart: 4,
+								investments: 9,
+								businesses: 1
+							}
+						});
+					}
 				}
 			});
 		}

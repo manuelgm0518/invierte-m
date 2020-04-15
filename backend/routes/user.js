@@ -64,10 +64,7 @@ router.get('/', (req, res) => {
     let token = req.headers.token;
     jwt.verify(token, process.env.SECRET_KEY, (err, decode) => {
         if (err) {
-            res.status(401).json({
-                error: 'unauthorized'
-            });
-            return;
+            res.json({unauthorized:true});
         }
         else {
             User.findOne({_id:decode._id})

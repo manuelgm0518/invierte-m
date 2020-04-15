@@ -16,19 +16,32 @@ router.post('/', (req, res) => {
 });
 
 router.get('/count', (req, res) => {
-    Product.countDocuments({}, (err, c) => {
+    Product.countDocuments({}).exec((err, data) => {
         if(err){
             res.status(400).json(err);
+            console.log(err);
             return;
         }
         else{
-            res.json({count:c});
+            res.json(data);
         }
     });
 });
 
 router.post('/interval', (req, res) => {
     Product.find({}).skip(req.body.min).limit(req.body.max).sort([req.body.order]).exec((err, data) => {
+        if(err){
+            res.status(400).json(err);
+            return;
+        }
+        else{
+            res.json(data);
+        }
+    });
+});
+
+router.get('/:id', (req, res) => {
+    Product.findOne({_id:req.params.id}).populate('business').exec((err, data) => {
         if(err){
             res.status(400).json(err);
             return;

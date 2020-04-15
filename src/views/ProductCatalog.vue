@@ -89,7 +89,7 @@ export default {
       }
     },
     sendProduct(_id){
-      alert(_id);
+      this.$router.push('/product/' + _id);
     }
   }
 }

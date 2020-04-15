@@ -11,7 +11,7 @@ const Store = new Vuex.Store({
 			firstName: '',
 			lastName: '',
 			notifications: {
-				messages: 5,
+				messages: 0,
 				shoppingCart: 0,
 				investments: 0,
 				businesses: 0
