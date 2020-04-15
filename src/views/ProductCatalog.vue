@@ -130,6 +130,8 @@ export default {
 }
 .productName{
   padding: 5px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: bold;
   text-align: center;
 }
 .productPrice{

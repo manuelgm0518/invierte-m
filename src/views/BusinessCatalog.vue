@@ -34,7 +34,7 @@
             <div class="pagination" v-on:click="changePage(page)" v-if="page != actual">{{page}}</div>
             <div class="paginationActual" v-on:click="changePage(page)" v-if="page == actual">{{page}}</div>
         </li>
-        <li><div class="pagination" v-on:click="changePage(actual + 1)">Siguiente</div></li>
+        <li><div class="pagination"  v-on:click="changePage(actual + 1)">Siguiente</div></li>
     </ul>
     </div>
 </template>
@@ -106,7 +106,9 @@ export default {
 .business{
       box-sizing: border-box;
     width: 20%;
+    height: 150px;
     margin-right: 3%;
+    margin-bottom: 3%;
     float: left;
     background: #fbcd18;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
@@ -117,12 +119,18 @@ export default {
     background-color: #ddb514;
     transform: scale(1.03);
 }
+.businessName{
+    padding: 5px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: bold;
+    text-align: center;
+}
 .businessContainer{
     margin: 10px;
 }
 .businessImage img{
     /* height: 100px; */
-      height: 150px;
+      height: 100px;
     overflow: hidden;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
     background: #fbcd18;

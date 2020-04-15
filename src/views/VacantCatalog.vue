@@ -109,6 +109,7 @@ export default {
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
     border-radius: 5px;
     cursor: pointer;
+	height: 100px;
 }
 .vacancies:hover{
     background-color: #ddb514;
@@ -116,6 +117,8 @@ export default {
 }
 .vacanciesName{
 	padding: 5px;
+	font-family: Georgia, 'Times New Roman', serif;
+	font-weight: bold;
 	text-align: center;
 }
 .vacanciesBusiness{
