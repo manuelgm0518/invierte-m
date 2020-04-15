@@ -15,7 +15,7 @@
 						v-for="image in imagesURL"
 						:key="image"
 						:img-src="image"
-						style="height: 100%"
+						style="max-height:20rem"
 					/>
 				</b-carousel>
 			</b-col>
@@ -51,15 +51,22 @@
 
 		<b-row>
 			<b-col cols="12" md="7">
-				<b-card class="border-0 shadow my-3">
-					<div v-html="content"></div>
+				<b-card class="border-0 shadow my-3" v-if="content.length>0">
+					<div v-for="section in content" :key="section.name" class="my-2">
+						<span class="font-weight-bold h4 text-golden">{{ section.title}}</span>
+						<div v-html="section.content"></div>
+					</div>
 				</b-card>
-				<b-card v-for="update in updates" :key="update.date" :header="'Actualización '+update.date" class="border-0 shadow">
-					<div v-html="update.content"></div>
+
+				<b-card v-for="update in updates" :key="update.date" class="border-0 shadow mt-3">
+					<div>
+						<span class="h5 font-weight-bold">Actualización {{update.date}}</span>
+						<div v-html="update.content"></div>
+					</div>
 				</b-card>
 			</b-col>
 			<b-col>
-				<b-card class="border-0 shadow mt-3">
+				<b-card class="border-0 shadow mt-3" v-if="lookingFor.length>0">
 					<h3 class="font-weight-bold">La empresa busca:</h3>
 					<b-button
 						div
@@ -73,7 +80,7 @@
 					</b-button>
 				</b-card>
 
-				<b-card class="border-0 shadow mt-3">
+				<b-card class="border-0 shadow mt-3" v-if="products.lenght>0">
 					<h3 class="font-weight-bold">Productos</h3>
 					<b-button v-for="product in products" :key="product.id" variant="silver my-2 text-left" block>
 						<b-avatar :src="product.imageURL" class="align-top mt-1" />
@@ -90,67 +97,62 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
 	name: "Business",
+	created() {
+		axios
+			.get("http://localhost:3000/api/business/" + this.$route.params.id)
+			.then(res => {
+				Object.assign(this, res.data);
+				/*this.content = [
+					{
+						title: "kkdvak",
+						content: "joaquin c la come"
+					},
+					{
+						title: "kkdvak2",
+						content: "joaquin c la come x2"
+					}
+				];
+				this.updates = [
+					{ date: "15/04/2020", content: "Joquín c la sigue comiendo" },
+					{ date: "16/04/2020", content: "Joquín c la sigue comiendo" }
+				];*/
+			});
+	},
 	data: () => ({
-		owner: {
-			id: "joaquinclacome",
-			firstName: "Manuel",
-			lastName: "González Martínez",
-			avatarURL: "https://image.flaticon.com/icons/svg/483/483361.svg",
-			biography: ""
-		},
-		name: "Trecemil",
-		location: "Aguascalientes, Ags. México",
-		imagesURL: [
-			"https://pop.inquirer.net/files/2020/04/dancing_coffin.jpg",
-			"	https://i.ytimg.com/vi/qdWkngzQEGc/maxresdefault.jpg"
-		],
+		owner: "",
+		name: "",
+		location: "",
+		imagesURL: [],
 		categories: [],
-		description:
-			"Un proyecto revolucionario que estuvo a punto de cambiar la historia tal como la conocemos.",
-		content: `
-		 <span class='h3 font-weight-bold mt-2'>Joaquín c la come</span>
-		 <p>
-			 Descripción mamalona acá 4k bien chida<br>
-			 denmen dinero qlos
-		 </p>
-		 <span class='h3 font-weight-bold mt-2'>Mi empresa</span>
-		 <p>
-			 está bien chida siono karnal
-		 </p>
-		
-		`,
-		updates: [
+		description: "",
+		content: [
 			{
-				date: "30/04/2020",
-				content: `<p>Joaquín c la sigue comiendo</p>`
+				title: "kkdvak",
+				content: "joaquin c la come"
 			}
+		],
+		updates: [
+			/*{ date: "",content: "" }*/
 		],
 		lookingFor: [
-			{
-				id: "7777esfsef",
-				name: "Patrón",
-				description:
-					"Esta persona se encargará de mandar a chingar su madre al América"
-			}
+			/*{id: "", name: "", description:""}*/
 		],
 		fundRaising: {
-			goal: 69420.0,
-			collected: 10000.0,
-			investors: 47,
+			goal: 0.0,
+			collected: 0.0,
+			investors: 0,
 			startDate: "",
-			finishDate: "20/04/2020"
+			finishDate: ""
 		},
 		registrationDate: "",
+
 		products: [
-			{
-				id: "444",
-				name: "Mayonesa McCormick",
-				salePrice: 777.5,
-				imageURL: "https://image.flaticon.com/icons/svg/2630/2630075.svg"
-			}
+			/*{ id: "", name: "", salePrice: 0.00, imageURL: "" }*/
 		],
+
 		carousel: {
 			slide: 0,
 			sliding: null
