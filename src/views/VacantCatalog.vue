@@ -18,6 +18,9 @@
 				<div class="vacanciesName">
 					{{ vacant.name }}
 				</div>
+				<div class="vacationMonthlyPayment">
+					Aproximadamente $ {{ vacant.monthlyPayment }} mensuales.
+				</div>
 				<div class="vacanciesBusiness">
 					Negocio: {{ vacant.business.name }}
 				</div>
@@ -85,6 +88,7 @@ export default {
 		},
 		sendVacant(_id){
 			alert(_id);
+			//this.$router.push('/vacant/' + _id);
 		}
 	}
 };
@@ -127,5 +131,9 @@ export default {
 }
 .paginationPage:hover{
 	color: blue;
+}
+.vacationMonthlyPayment{
+	color: rgb(251, 205, 24);
+	text-align: center;
 }
 </style>
