@@ -6,6 +6,10 @@ var VacantSchema = new Schema({
     description: String,
     monthlyPayment: { type: Number, default: 0.00 },
     categories: [String],
+    requests:[{
+        user: {type: Schema.Types.ObjectId, ref: 'User', required: [true, 'Ingrese al usuario']},
+        fileURL:String
+    }]
 }, {collection:'vacancies'});
 
 module.exports = model('Vacant', VacantSchema);

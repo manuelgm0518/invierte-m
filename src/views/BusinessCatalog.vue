@@ -69,7 +69,6 @@ export default {
                 max: (this.actual) * this.show,
                 order: this.order
             }
-            console.log(interval);
             axios.post('http://localhost:3000/api/business/interval', interval)
             .then(res => {
                 this.business = res.data;
