@@ -66,25 +66,27 @@
 			</b-col>
 		</b-row>
 
-		<b-row class="bg-white m-0 p-3 p-md-5 text-center">
+		<b-row class="bg-golden m-0 p-3 p-md-5 text-center">
 			<b-col>
-				<p class="divisor">¿Qué te permite nuestra plataforma?</p>
+				<h2 class="text-black mb-4">
+					¿Cómo resolvemos estas problemáticas?
+				</h2>
 
 				<b-row>
 					<b-col class="p-2" md>
-						<div class="bg-silver rounded py-2 px-4 h-100">
+						<div class="bg-white rounded py-2 px-4 h-100">
 							<span class="h4 text-golden font-weight-bold">Financiamiento</span>
 							<p>Con INVIERTE-M seleccionas de entre todas las alternativas de inversión, la que consideres más viable a tus condiciones, logrando con esto que tu capital sea el que genere mayores ingresos.</p>
 						</div>
 					</b-col>
 					<b-col class="p-2" md>
-						<div class="bg-silver rounded py-2 px-4 h-100">
+						<div class="bg-white rounded py-2 px-4 h-100">
 							<span class="h4 text-golden font-weight-bold">Clientes</span>
 							<p>A través de esta plataforma, ofreces los mejores productos y miles de personas podrán conocerlos, generando mayores utilidades a tu empresa.</p>
 						</div>
 					</b-col>
 					<b-col class="p-2" md>
-						<div class="bg-silver rounded py-2 px-4 h-100">
+						<div class="bg-white rounded py-2 px-4 h-100">
 							<span class="h4 text-golden font-weight-bold">Personal Capacitado</span>
 							<p>En INVIERTE-M se visualizan las ofertas de trabajo, a través del cual puedes postularte para que desarrolles tus habilidades en una empresa.</p>
 						</div>
@@ -92,13 +94,13 @@
 				</b-row>
 				<b-row>
 					<b-col class="p-2" md>
-						<div class="bg-silver rounded py-2 px-4">
+						<div class="bg-white rounded py-2 px-4">
 							<span class="h4 text-golden font-weight-bold">Proveedores</span>
 							<p>Si deseas ofrecer tus bienes o servicios, e incrementar tus ingresos, esta plataforma es la mejor opción, ya que a través de ella los puedes dar a conocer y que tu mercado se vea incrementado. </p>
 						</div>
 					</b-col>
 					<b-col class="p-2" md>
-						<div class="bg-silver rounded py-2 px-4">
+						<div class="bg-white rounded py-2 px-4">
 							<span class="h4 text-golden font-weight-bold">Visibilidad en Internet</span>
 							<p>Los servicios que ofrece INVIERTE-M a través de la Web, son alternativas económicas a través de la cual puedes recibir y otorgar beneficios, generando con esto activar la economía de sus usuarios.  </p>
 						</div>
@@ -106,20 +108,20 @@
 				</b-row>
 			</b-col>
 		</b-row>
-		<b-row class="bg-golden text-center m-0 p-3">
-			<b-col cols="12" md="4">
+		<b-row class="bg-white text-center m-0 p-3">
+			<b-col cols="12" md="4" class="my-2">
 				<h3>
 					<b>Misión</b>
 				</h3>
 				<p>Proporcionar las herramientas e información adecuada a fin de facilitar a los capitalistas la elección de invertir, impulsando el crecimiento financiero de las empresas.</p>
 			</b-col>
-			<b-col cols="12" md="4">
+			<b-col cols="12" md="4" class="my-2">
 				<h3>
 					<b>Visión</b>
 				</h3>
 				<p>Ser la plataforma web de vanguardia más utilizada por los inversionistas y las empresas como primera opción para generar recursos y reactivar su economía.</p>
 			</b-col>
-			<b-col cols="12" md="4">
+			<b-col cols="12" md="4" class="my-2">
 				<h4>
 					<b>Objetivo</b>
 				</h4>
@@ -127,9 +129,7 @@
 			</b-col>
 		</b-row>
 
-		<b-row class="bg-white m-0 p-3">
-			<h1>Joaquín c la come</h1>
-		</b-row>
+		
 	</b-container>
 </template>
 

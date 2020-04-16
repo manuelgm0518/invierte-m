@@ -43,7 +43,7 @@ export default {
 			if (this.$store.state.user.id == null)
 				alert("Debes iniciar sesión primero!");
 			else
-				this.$route.push({
+				this.$router.push({
 					name: "AgregarEmpresa",
 					params: { id: this.$store.state.user.id }
 				});
