@@ -52,7 +52,7 @@
 						v-bind:key="i"
 						v-on:click="sendBusiness(bus._id)"
 					>
-						<b-card class="border-0 shadow business" :img-src="getImage(bus.imagesURL)" img-top>
+						<b-card class="border-0 shadow item-card" :img-src="getImage(bus.imagesURL)" img-height="150" img-top>
 							<span class="h4 text-weight-bold">{{bus.name}}</span>
 							<br />
 							<span class="text-golden">{{bus.location}}</span>
@@ -152,11 +152,13 @@ export default {
 </script>
 
 <style scoped>
-.business {
+.item-card {
 	transition: transform 0.2s;
 }
-.business:hover {
+.item-card:hover {
 	transform: translateY(-0.5rem);
 	cursor: pointer;
 }
+
+
 </style>
