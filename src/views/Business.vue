@@ -81,7 +81,8 @@
 							variant="silver my-2 text-center"
 							block
 						>
-							<span class="h5 font-weight-bold">{{ vacant.name }}</span><br/>
+							<span class="h5 font-weight-bold">{{ vacant.name }}</span>
+							<br />
 							<span class="text-muted">{{ vacant.description }}</span>
 						</b-button>
 					</b-collapse>
@@ -114,15 +115,25 @@
 import axios from "axios";
 export default {
 	name: "Business",
-	created() {
-		axios.get("http://localhost:3000/api/business/" + this.$route.params.id).then(res => {
-			Object.assign(this, res.data);
-		});
-		axios.get("http://localhost:3000/api/product/business/" + this.$route.params.id).then(res => {	
-				this.products = res.data;	
-		});
-		axios.get("http://localhost:3000/api/vacant/business/" + this.$route.params.id).then(res => {	
-				this.lookingFor = res.data;	
+	mounted() {
+		new Promise(() => {
+			setTimeout(() => {
+				axios
+					.get("http://localhost:3000/api/business/" + this.$route.params.id)
+					.then(res => {
+						Object.assign(this, res.data);
+						axios
+							.get("http://localhost:3000/api/product/business/" + this.$route.params.id)
+							.then(res => {
+								this.products = res.data;
+								axios
+									.get("http://localhost:3000/api/vacant/business/" + this.$route.params.id)
+									.then(res => {
+										this.lookingFor = res.data;
+									});
+							});
+					});
+			}, 500);
 		});
 
 		/*this.products = [

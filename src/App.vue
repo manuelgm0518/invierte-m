@@ -2,7 +2,7 @@
   <div id="app" class="bg-light">
     <NavBar/>
     <transition name="fade">
-      <router-view style="padding-top: 4rem;"/>
+      <router-view style="padding-top: 4rem; min-height: 100vh"/>
     </transition>
     <Footer/>
   </div>
