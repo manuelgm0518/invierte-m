@@ -62,21 +62,21 @@
 			</b-form>
 		</b-modal>
 
-		<b-row>
-			<b-col cols="12" md="7">
-				<b-carousel :interval="4000" :controls="imagesURL.length>1" :indicators="imagesURL.length>1">
-					<b-carousel-slide v-for="url in imagesURL" :key="url" style="height:20rem">
-						<template v-slot:img>
-							<img
-								style="position: absolute; top: 0; left: 0; min-width: 100%; height: 100%; max-width: 100%"
-								:src="url"
-							/>
-						</template>
-					</b-carousel-slide>
-				</b-carousel>
-			</b-col>
-			<b-col>
-				<b-card class="border-0 shadow">
+		<b-card class="border-0 shadow p-0">
+			<b-row>
+				<b-col cols="12" md="7">
+					<b-carousel :interval="4000" :controls="imagesURL.length>1" :indicators="imagesURL.length>1">
+						<b-carousel-slide v-for="url in imagesURL" :key="url" style="height:20rem">
+							<template v-slot:img>
+								<img
+									style="position: absolute; top: 0; left: 0; min-width: 100%; height: 100%; max-width: 100%"
+									:src="url"
+								/>
+							</template>
+						</b-carousel-slide>
+					</b-carousel>
+				</b-col>
+				<b-col class="pl-md-4 ml-md-3">
 					<h1 class="font-weight-bold p-0 m-0">{{ name }}</h1>
 					<span class="text-golden">{{ location }}</span>
 					<h5 class="text-muted text-justify mt-2">{{ description }}</h5>
@@ -107,9 +107,9 @@
 							<i class="fas fa-info-circle"></i>
 						</b-button>
 					</b-button-group>
-				</b-card>
-			</b-col>
-		</b-row>
+				</b-col>
+			</b-row>
+		</b-card>
 
 		<b-row>
 			<b-col cols="12" md="7">
@@ -134,13 +134,13 @@
 			</b-col>
 			<b-col>
 				<b-card class="border-0 shadow mt-3" v-if="lookingFor.length>0">
-					<b-button block href="#" v-b-toggle.vacancies-collapse variant="primary">
+					<b-button block v-b-toggle.vacancies-collapse variant="primary">
 						<span class="font-weight-bold">
 							La empresa busca:
 							<i class="fas fa-sort-down"></i>
 						</span>
 					</b-button>
-					<b-collapse id="vacancies-collapse" visible accordion="my-accordion" role="tabpanel">
+					<b-collapse id="vacancies-collapse" accordion="my-accordion" role="tabpanel">
 						<b-button
 							div
 							v-for="vacant in lookingFor"
@@ -157,13 +157,13 @@
 				</b-card>
 
 				<b-card class="border-0 shadow mt-3" v-if="products.length>0">
-					<b-button block href="#" v-b-toggle.products-collapse variant="primary">
+					<b-button block v-b-toggle.products-collapse variant="primary">
 						<span class="font-weight-bold">
 							Productos
 							<i class="fas fa-sort-down"></i>
 						</span>
 					</b-button>
-					<b-collapse id="products-collapse" visible accordion="my-accordion" role="tabpanel">
+					<b-collapse id="products-collapse" accordion="my-accordion" role="tabpanel">
 						<b-button
 							v-for="product in products"
 							:key="product.id"
