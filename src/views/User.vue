@@ -40,11 +40,11 @@ export default {
 	name: "User",
 	data: () => ({
 		avatarURL: "https://placekitten.com/300/300",
-		firstName: "Joaquín",
-		lastName: "'El Comedor' Pedroza",
+		firstName: "Joaquín Emiliano",
+		lastName: "Pedroza",
 		biography:
-			"Ah no mames, ¿Qué pedo? Por cierto me la como. Lorem ipsum senfomaekiunaeifmo jnoiaeijnifosdfsiisodfsioofdsoeesdfiso",
-		location: "La metrópoli Yisus Mery",
+			"Emprendedor que busca la maner de mejorar Mexico.",
+		location: "Jesus Maria, Aguascalientes.",
 		joinedDate: "16/04/2020",
 		businesses: []
 	}),
