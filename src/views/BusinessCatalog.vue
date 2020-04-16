@@ -2,14 +2,14 @@
   <div>
     <h1 style="padding-left: 10px;">Catálogos de negocios</h1>
     
-    <p style="padding-left: 10px;">Ordenar por <select v-model="order" v-on:change="getPages">
+    <p id="ordenarrpor" >Ordenar por <select v-model="order" v-on:change="getPages">
         <option v-bind:value="['name', 1]" selected>Nombre A - Z</option>
         <option v-bind:value="['name', -1]">Nombre Z - A</option>
         <option v-bind:value="['registrationDate', -1]">Registro más reciente</option>
         <option v-bind:value="['registrationDate', 1]">Registro más antiguo</option>
     </select></p>
 
-    <p style="padding-left: 10px;">Negocios por página <select v-model="show" v-on:change="getPages">
+    <p id="cantpaginas">Negocios por página <select v-model="show" v-on:change="getPages">
             <option value="30" selected>30</option>
             <option value="50">50</option>
             <option value="100">100</option>
@@ -21,7 +21,9 @@
                 {{ bus.name }}
             </div>
             <div class="businessImage">
+                <center>
                 <img v-bind:src="getImage(bus.imagesURL)">
+                </center>
             </div>
         </div>
     </div>
@@ -32,7 +34,7 @@
             <div class="pagination" v-on:click="changePage(page)" v-if="page != actual">{{page}}</div>
             <div class="paginationActual" v-on:click="changePage(page)" v-if="page == actual">{{page}}</div>
         </li>
-        <li><div class="pagination" v-on:click="changePage(actual + 1)">Siguiente</div></li>
+        <li><div class="pagination"  v-on:click="changePage(actual + 1)">Siguiente</div></li>
     </ul>
     </div>
 </template>
@@ -103,23 +105,36 @@ export default {
 
 <style>
 .business{
-    box-sizing: border-box;
-    float: left;
-    border-radius: 3px;
+      box-sizing: border-box;
     width: 20%;
     height: 150px;
-    padding: 5px;
+    margin-right: 3%;
+    margin-bottom: 3%;
+    float: left;
+    background: #fbcd18;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
     cursor: pointer;
 }
 .business:hover{
-    background-color: rgb(233, 233, 233);
+    background-color: #ddb514;
+    transform: scale(1.03);
+}
+.businessName{
+    padding: 5px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: bold;
+    text-align: center;
 }
 .businessContainer{
     margin: 10px;
 }
 .businessImage img{
-    height: 100px;
+    /* height: 100px; */
+      height: 100px;
+    overflow: hidden;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+    background: #fbcd18;
 }
 ul{
     list-style: none;
@@ -140,5 +155,25 @@ ul li .pagination{
 }
 ul li .pagination:hover{
     color: blue;
+}
+h1 {  
+  text-align: center;
+  font-size: 72px;  
+  background: -webkit-linear-gradient(left top, #fb9918, yellow);
+  background: linear-gradient(to bottom right, #fb9918, yellow);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+} 
+#ordenarrpor{
+    padding: 3px;
+	background: #fbcd18;
+	width: 340px;
+	border-bottom-right-radius: 20px;
+}
+#cantpaginas{
+    background: rgb(204, 200, 200);
+    padding: 3px;
+    width: 340px;
+	border-bottom-right-radius: 20px;
 }
 </style>

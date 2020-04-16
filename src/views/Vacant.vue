@@ -1,12 +1,14 @@
 <template>
   <div>
-    <h1>Vacante: {{ $route.params.id }}</h1>
+    <h1 style="margin-top: 200px;">Vacante: {{ $route.params.id }}</h1>
+    <p>lksdfklajsflkjas</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Vacant"
+  name: "Vacant",
+  id: this.$route.params.id
 }
 </script>
 
