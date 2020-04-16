@@ -98,7 +98,11 @@ body{
   background: white;
 }
 .productBuyN{
-  margin: 10px;
+  margin: 10px 0px;
+  width: 390px;
+  border: 3px solid greenyellow;
+  padding: 10px;
+  border-radius: 10px;
 }
 .businessN{
   margin-left: 10px;
