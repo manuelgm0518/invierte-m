@@ -82,4 +82,16 @@ router.put('/addShoppingCart/:id', (req, res) => {
     });
 });
 
+router.get('/:id', (req, res) => {
+    User.findOne({'_id':req.params.id}).populate('shoppingCart.product').exec((err, data) => {
+        if(err){
+            res.status(400).json(err);
+            return;
+        }
+        else{
+            res.json(data);
+        }
+    });
+});
+
 module.exports = router;
