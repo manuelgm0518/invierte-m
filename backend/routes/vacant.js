@@ -50,10 +50,10 @@ router.post('/file/:ids', (req, res) => {
             if(err)
                 console.log(err);
         });
-        fstream = fs.createWriteStream(__dirname + '/files/' + filename);
+        fstream = fs.createWriteStream(__dirname + '\\files\\' + filename);
         file.pipe(fstream);
         fstream.on('close', function () {
-            res.status(200);
+            res.status(200).json({});
         });
     });
 });

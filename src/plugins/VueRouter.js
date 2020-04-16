@@ -48,6 +48,12 @@ const Router = new VueRouter({
 	}, {
 		path: '/user/:id', name: 'Usuario',
 		component: () => import('../views/User.vue')
+	}, {
+		path: '/addproduct/:id', name:'AgregarProducto',
+		component: () => import('../views/AddProduct.vue')
+	}, {
+		path: '/addvacant/:id', name:'AgregarVacante',
+		component: () => import('../views/AddVacant.vue')
 	}],
 	scrollBehavior(to, from, savedPosition) {
 		return new Promise((resolve) => {
