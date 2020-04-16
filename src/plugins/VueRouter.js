@@ -8,7 +8,7 @@ const Router = new VueRouter({
 	base: process.env.BASE_URL,
 	routes: [{
 		path: '/', name: 'Inicio',
-		component: () => import('../views/PagPrincipal.vue')
+		component: () => import('../views/Home.vue')
 	}, {
 		path: '/search', name: 'Buscar',
 		component: () => import('../views/Search.vue')
@@ -48,12 +48,18 @@ const Router = new VueRouter({
 	}, {
 		path: '/user/:id', name: 'Usuario',
 		component: () => import('../views/User.vue')
+	}, {
+		path: '/addproduct/:id', name:'AgregarProducto',
+		component: () => import('../views/AddProduct.vue')
+	}, {
+		path: '/addvacant/:id', name:'AgregarVacante',
+		component: () => import('../views/AddVacant.vue')
 	}],
 	scrollBehavior(to, from, savedPosition) {
 		return new Promise((resolve) => {
 			setTimeout(() => {
 				resolve(savedPosition ? savedPosition : { x: 0, y: 0 })
-			}, 330)
+			}, 300)
 		})
 	}
 });

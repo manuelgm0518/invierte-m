@@ -12,4 +12,13 @@ router.post('/', (req, res) => {
     });
 });
 
+router.get('/user/:id', (req, res) => {
+    Investment.find({investor:req.params.id}, (err, data) => {
+        if(err)
+            res.status(400).json(err);
+        else
+            res.json(data);
+    });
+});
+
 module.exports = router;

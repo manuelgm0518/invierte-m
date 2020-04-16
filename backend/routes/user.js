@@ -73,12 +73,42 @@ router.post('/logIn', (req, res) => {
         });
 });
 
+router.post('/removeShoppingCart', (req, res) => {
+    User.update({ "_id": req.body.user },{ "$pull": { "shoppingCart": {"_id":req.body.product} } }, (err, data) => {
+        if(err)
+            res.status(400).json(err);
+        else
+            res.json(data);
+    });
+});
+
 router.put('/addShoppingCart/:id', (req, res) => {
     User.findOneAndUpdate({ "_id": req.params.id},{ "$push": { "shoppingCart": req.body } }, (err, data) => {
         if(err)
             res.status(400).json(err);
         else
             res.json(data);
+    });
+});
+
+router.get('/clearShoppingCart/:id', (req, res) => {
+    User.findOneAndUpdate({ "_id": req.params.id},{ "$set": { "shoppingCart": [] } }, (err, data) => {
+        if(err)
+            res.status(400).json(err);
+        else
+            res.json(data);
+    });
+});
+
+router.get('/:id', (req, res) => {
+    User.findOne({'_id':req.params.id}).populate('shoppingCart.product').exec((err, data) => {
+        if(err){
+            res.status(400).json(err);
+            return;
+        }
+        else{
+            res.json(data);
+        }
     });
 });
 

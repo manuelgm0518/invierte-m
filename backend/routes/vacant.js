@@ -46,14 +46,14 @@ router.post('/file/:ids', (req, res) => {
     req.busboy.on('file', function (fieldname, file, filename) {
         console.log("Uploading: " + filename);
         var ids = req.params.ids.split('$');
-        Vacant.findOneAndUpdate({ "_id": ids[1]},{ "$push": { "requests": {user:ids[0], fileURL:__dirname + '/files/' + filename} } }, (err, data) => {
+        Vacant.findOneAndUpdate({ "_id": ids[1]},{ "$push": { "requests": {user:ids[0], fileURL:'http://localhost:3000/img/' + filename} } }, (err, data) => {
             if(err)
                 console.log(err);
         });
-        fstream = fs.createWriteStream(__dirname + '/files/' + filename);
+        fstream = fs.createWriteStream(__dirname + '\\files\\' + filename);
         file.pipe(fstream);
         fstream.on('close', function () {
-            res.status(200);
+            res.status(200).json({});
         });
     });
 });
@@ -70,5 +70,19 @@ router.get('/:id', (req, res) => {
     });
     res.status(200);
 });
+
+
+router.get('/business/:id', (req, res) => {
+    Vacant.find({business:req.params.id}).exec((err, data) => {
+        if(err){
+            res.status(400).json(err);
+            return;
+        }
+        else{
+            res.json(data);
+        }
+    });
+});
+
 
 module.exports = router;

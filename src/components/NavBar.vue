@@ -60,6 +60,13 @@ export default {
 	components: {
 		NavBarUser
 	},
+	computed: {
+		isTransparent() {
+			if (this.$route.name == "Inicio")
+				return "transparent";
+			return "white";
+		}
+	},
 	data: () => ({
 		search: "",
 		navigation: [
@@ -76,7 +83,7 @@ export default {
 <style lang="scss" scoped>
 a.nav-link.active {
 	color: black !important;
-	background: #fbcd18;
+	background: #fbcd18 !important;
 	border-radius: 0.5rem;
 }
 @media only screen and (max-width: 768px) {

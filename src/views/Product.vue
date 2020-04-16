@@ -45,8 +45,7 @@ export default {
             quantity:this.quantity
         }
         axios.put('http://localhost:3000/api/user/addShoppingCart/' + this.$store.state.user.id, newShopingCart);
-        alert('Aquí te mandaría a la pagina de carrito.');
-        this.$router.push('/');
+        this.$router.push('/shopping-cart');
       }
     }
   }
