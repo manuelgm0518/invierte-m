@@ -71,4 +71,18 @@ router.get('/:id', (req, res) => {
     res.status(200);
 });
 
+
+router.get('/business/:id', (req, res) => {
+    Vacant.find({business:req.params.id}).exec((err, data) => {
+        if(err){
+            res.status(400).json(err);
+            return;
+        }
+        else{
+            res.json(data);
+        }
+    });
+});
+
+
 module.exports = router;

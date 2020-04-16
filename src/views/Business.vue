@@ -67,29 +67,43 @@
 			</b-col>
 			<b-col>
 				<b-card class="border-0 shadow mt-3" v-if="lookingFor.length>0">
-					<h3 class="font-weight-bold">La empresa busca:</h3>
-					<b-button
-						div
-						v-for="vacant in lookingFor"
-						:key="vacant.id"
-						variant="silver my-2 text-left"
-						block
-					>
-						<span class="h5 font-weight-bold">{{ vacant.name }}:&nbsp;</span>
-						<span class="text-muted">{{ vacant.description }}</span>
+					<b-button block href="#" v-b-toggle.vacancies-collapse variant="primary">
+						<span class="font-weight-bold">
+							La empresa busca:
+							<i class="fas fa-sort-down"></i>
+						</span>
 					</b-button>
+					<b-collapse id="vacancies-collapse" visible accordion="my-accordion" role="tabpanel">
+						<b-button
+							div
+							v-for="vacant in lookingFor"
+							:key="vacant.id"
+							variant="silver my-2 text-center"
+							block
+						>
+							<span class="h5 font-weight-bold">{{ vacant.name }}</span><br/>
+							<span class="text-muted">{{ vacant.description }}</span>
+						</b-button>
+					</b-collapse>
 				</b-card>
 
-				<b-card class="border-0 shadow mt-3" v-if="products.lenght>0">
-					<h3 class="font-weight-bold">Productos</h3>
-					<b-button v-for="product in products" :key="product.id" variant="silver my-2 text-left" block>
-						<b-avatar :src="product.imageURL" class="align-top mt-1" />
-						<div class="d-inline-block ml-3">
-							<span class="h5 font-weight-bold">{{ product.name }}</span>
-							<br />
-							<span class="text-golden font-weight-bold">${{ product.salePrice }}</span>
-						</div>
+				<b-card class="border-0 shadow mt-3" v-if="products.length>0">
+					<b-button block href="#" v-b-toggle.products-collapse variant="primary">
+						<span class="font-weight-bold">
+							Productos
+							<i class="fas fa-sort-down"></i>
+						</span>
 					</b-button>
+					<b-collapse id="products-collapse" visible accordion="my-accordion" role="tabpanel">
+						<b-button v-for="product in products" :key="product.id" variant="silver my-2 text-left" block>
+							<b-avatar :src="product.imageURL" class="align-top mt-1" />
+							<div class="d-inline-block ml-3">
+								<span class="h5 font-weight-bold">{{ product.name }}</span>
+								<br />
+								<span class="text-golden font-weight-bold">${{ product.salePrice }}</span>
+							</div>
+						</b-button>
+					</b-collapse>
 				</b-card>
 			</b-col>
 		</b-row>
@@ -101,11 +115,20 @@ import axios from "axios";
 export default {
 	name: "Business",
 	created() {
-		axios
-			.get("http://localhost:3000/api/business/" + this.$route.params.id)
-			.then(res => {
-				Object.assign(this, res.data);
-				/*this.content = [
+		axios.get("http://localhost:3000/api/business/" + this.$route.params.id).then(res => {
+			Object.assign(this, res.data);
+		});
+		axios.get("http://localhost:3000/api/product/business/" + this.$route.params.id).then(res => {	
+				this.products = res.data;	
+		});
+		axios.get("http://localhost:3000/api/vacant/business/" + this.$route.params.id).then(res => {	
+				this.lookingFor = res.data;	
+		});
+
+		/*this.products = [
+			{ id: "777", name: "segsgdsg", salePrice: 0.00, imageURL: "" }
+		];*/
+		/*this.content = [
 					{
 						title: "kkdvak",
 						content: "joaquin c la come"
@@ -119,7 +142,6 @@ export default {
 					{ date: "15/04/2020", content: "Joquín c la sigue comiendo" },
 					{ date: "16/04/2020", content: "Joquín c la sigue comiendo" }
 				];*/
-			});
 	},
 	data: () => ({
 		owner: "",

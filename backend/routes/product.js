@@ -52,4 +52,17 @@ router.get('/:id', (req, res) => {
     });
 });
 
+
+router.get('/business/:id', (req, res) => {
+    Product.find({business:req.params.id}).exec((err, data) => {
+        if(err){
+            res.status(400).json(err);
+            return;
+        }
+        else{
+            res.json(data);
+        }
+    });
+});
+
 module.exports = router;
