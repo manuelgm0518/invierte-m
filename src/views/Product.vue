@@ -2,7 +2,7 @@
   <div >
     <img class="productImageN" v-bind:src="product.imageURL">
     <div class="productInformationN">
-      <h1 class="productNameN">{{ product.name }}</h1>
+      <h2 class="productNameN">{{ product.name }}</h2>
       <div class="productPriceN">Precio: $ {{product.salePrice }} MXN</div>
       <p class="productBuyN">Cantidad: <input type="number" value="1" min="1" max="100" v-model="quantity"> <button type="button" v-on:click="addShopingCart">Añadir al carrito</button></p>
       <div class="productDescriptionN">{{ product.description }}</div>

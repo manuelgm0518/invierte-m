@@ -19,7 +19,7 @@
 					{{ vacant.name }}
 				</div>
 				<div class="vacationMonthlyPayment">
-					Aproximadamente $ {{ vacant.monthlyPayment }} mensuales.
+					$ {{ vacant.monthlyPayment }} mensuales.
 				</div>
 				<div class="vacanciesBusiness">
 					Negocio: {{ vacant.business.name }}
@@ -87,8 +87,7 @@ export default {
 			}
 		},
 		sendVacant(_id){
-			alert(_id);
-			//this.$router.push('/vacant/' + _id);
+			this.$router.push('/vacant/' + _id);
 		}
 	}
 };

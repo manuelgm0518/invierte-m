@@ -5,7 +5,7 @@ var InvestmentSchema = new Schema({
     business: { type: Schema.Types.ObjectId, ref: 'Business', required: [true, 'Ingrese a la empresa'] },
     investmentDate: { type: Date, default: Date.now },
     amount: { type: Number, min: [10, 'Debes invertir un mínimo de $10'] },
-    paybackDate: { Type: Date, required: [true, 'Ingresa cuándo quires recuperar tu inversión'] },
+    paybackDate: { type: Date, required: [true, 'Ingresa cuándo quires recuperar tu inversión'] },
     interest: { type: Number, default: 0.1 }
 });
 
