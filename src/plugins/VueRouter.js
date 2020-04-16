@@ -8,7 +8,7 @@ const Router = new VueRouter({
 	base: process.env.BASE_URL,
 	routes: [{
 		path: '/', name: 'Inicio',
-		component: () => import('../views/PagPrincipal.vue')
+		component: () => import('../views/Home.vue')
 	}, {
 		path: '/search', name: 'Buscar',
 		component: () => import('../views/Search.vue')

@@ -168,7 +168,7 @@ h1 {
     padding: 3px;
 	background: #fbcd18;
 	width: 340px;
-	border-bottom-right-radius: 20px;
+	/*border-bottom-right-radius: 20px;*/
 }
 #cantpaginas{
     background: rgb(204, 200, 200);

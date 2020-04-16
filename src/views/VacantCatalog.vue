@@ -149,11 +149,6 @@ export default {
 .paginationPage:hover{
 	color: blue;
 }
-<<<<<<< HEAD
-.vacationMonthlyPayment{
-	color: rgb(251, 205, 24);
-	text-align: center;
-=======
 h1 {  
   text-align: center;
   font-size: 72px;  
@@ -166,7 +161,6 @@ h1 {
     background: rgb(204, 200, 200);
     padding: 3px;
     width: 270px;
-	border-bottom-right-radius: 20px;
->>>>>>> 1673e384db664998422a4bc9662ab56cbe8a2143
+	/*border-bottom-right-radius: 20px;*/
 }
 </style>
