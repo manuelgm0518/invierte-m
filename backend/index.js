@@ -20,5 +20,6 @@ app.use('/api/business', require('./routes/business'));
 app.use('/api/product', require('./routes/product'));
 app.use('/api/vacant', require('./routes/vacant'));
 app.use('/api/investment', require('./routes/investment'));
+app.use('/img', require('./routes/images'));
 
 app.listen(app.get('port'), () => { console.log("Server on port " + app.get('port')); });

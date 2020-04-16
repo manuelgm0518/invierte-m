@@ -46,7 +46,7 @@ router.post('/file/:ids', (req, res) => {
     req.busboy.on('file', function (fieldname, file, filename) {
         console.log("Uploading: " + filename);
         var ids = req.params.ids.split('$');
-        Vacant.findOneAndUpdate({ "_id": ids[1]},{ "$push": { "requests": {user:ids[0], fileURL:__dirname + '/files/' + filename} } }, (err, data) => {
+        Vacant.findOneAndUpdate({ "_id": ids[1]},{ "$push": { "requests": {user:ids[0], fileURL:'http://localhost:3000/img/' + filename} } }, (err, data) => {
             if(err)
                 console.log(err);
         });
