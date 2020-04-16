@@ -52,8 +52,8 @@
 						v-bind:key="i"
 						v-on:click="sendBusiness(bus._id)"
 					>
-						<b-card class="border-0 shadow item-card" :img-src="getImage(bus.imagesURL)" img-height="150" img-top>
-							<span class="h4 text-weight-bold">{{bus.name}}</span>
+						<b-card class="border-0 shadow item-card h-100" :img-src="getImage(bus.imagesURL)" img-top>
+							<span class="h4 font-weight-bold">{{bus.name}}</span>
 							<br />
 							<span class="text-golden">{{bus.location}}</span>
 						</b-card>
@@ -91,7 +91,7 @@ export default {
 			],
 			business: [],
 			count: 0,
-			show: 30,
+			show: 10,
 			actual: 1,
 			pages: [],
 			numPages: 0,

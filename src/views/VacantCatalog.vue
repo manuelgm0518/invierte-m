@@ -1,4 +1,73 @@
 <template>
+<b-container fluid class="my-3 my-md-5">
+		<b-row class="px-2 px-md-5">
+			<b-col cols="12" md="3">
+				<b-card class="border-0 shadow text-center my-2">
+					<span class="h3 font-weight-bold text-golden">Catálogo de Vacantes</span>
+					<div class="my-3 text-left">
+						Ordenar por
+						<b-form-select
+							v-model="order"
+							:options="sorting"
+							@change="getPages"
+							size="sm"
+							class="border-0 bg-silver"
+						/>
+					</div>
+
+					<div class="my-3 text-left">
+						Vacantes por página
+						<b-form-spinbutton
+							v-model="show"
+							min="10"
+							max="100"
+							step="10"
+							@change="getPages"
+							size="sm"
+							class="border-0 bg-silver"
+						></b-form-spinbutton>
+					</div>
+
+					<div class="text-left">
+						Página
+						<b-pagination
+							@input="changePage"
+							v-model="actual"
+							:total-rows="count"
+							:per-page="show"
+							size="sm"
+							align="fill"
+						></b-pagination>
+					</div>
+				</b-card>
+			</b-col>
+
+			<b-col>
+				<b-row>
+					<b-col
+						cols="12"
+						md="4"
+						class="py-2"
+						v-for="(vacant, i) in vacancies"
+						v-bind:key="i"
+						v-on:click="sendVacant(vacant._id)"
+					>
+						<b-card class="border-0 shadow item-card h-100">
+							<span class="h4 font-weight-bold">{{vacant.name}}</span>
+							<div class="text-muted">
+								Negocio: {{ vacant.business.name }}
+							</div>
+							<div class="text-golden h5">
+								${{vacant.monthlyPayment}} mensuales
+							</div>
+							
+						</b-card>
+					</b-col>
+				</b-row>
+			</b-col>
+		</b-row>
+	</b-container>
+<!--
 	<div>
 		<h1 style="padding-left: 10px;">Catálogo de Vacantes</h1>
 
@@ -35,7 +104,7 @@
 			</li>
 			<li><div class="paginationPage" v-on:click="changePage(actual + 1)">Siguiente</div></li>
 		</ul>
-	</div>
+	</div>-->
 </template>
 
 <script>
@@ -45,9 +114,19 @@ export default {
 	name: "VacantCatalog",
 	data(){
 		return {
+				sorting: [
+				{
+					value: ["name", 1],
+					text: "Nombre A - Z"
+				},
+				{
+					value: ["name", -1],
+					text: "Nombre Z - A"
+				}
+			],
 			vacancies:[],
 			count: 0,
-			show: 30,
+			show: 10,
 			actual: 1,
 			pages:[],
 			numPages:0,
@@ -94,6 +173,16 @@ export default {
 </script>
 
 <style scoped>
+.item-card {
+	transition: transform 0.2s;
+}
+.item-card:hover {
+	transform: translateY(-0.5rem);
+	cursor: pointer;
+}
+
+
+
 #ordenarpor{
 	background: #fbcd18;
 	width: 270px;

@@ -53,12 +53,11 @@
 						v-on:click="sendProduct(product._id)"
 					>
 						<b-card
-							class="border-0 shadow item-card"
+							class="border-0 shadow item-card h-100"
 							:img-src="product.imageURL"
-							img-height="150"
 							img-top
 						>
-							<span class="h4 text-weight-bold">{{product.name}}</span>
+							<span class="h4 font-weight-bold">{{product.name}}</span>
 							<br />
 							<span class="text-golden h3">${{product.salePrice}}</span>
 						</b-card>
@@ -96,7 +95,7 @@ export default {
 			],
 			products: [],
 			count: 0,
-			show: 30,
+			show: 10,
 			actual: 1,
 			pages: [],
 			numPages: 0,
