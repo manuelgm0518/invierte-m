@@ -71,24 +71,24 @@
 				<h3>
 					<b>Misión</b>
 				</h3>
-				<p>Nuestra misión es blablabla</p>
+				<p>Proporcionar las herramientas e información adecuada a fin de facilitar a los capitalistas la elección de invertir, impulsando el crecimiento financiero de las empresas.</p>
 			</b-col>
 			<b-col cols="12" md="4">
 				<h3>
 					<b>Visión</b>
 				</h3>
-				<p>Nuestro objetivo es gsomsemfksef</p>
+				<p>Ser la plataforma web de vanguardia más utilizada por los inversionistas y las empresas como primera opción para generar recursos y reactivar su economía.</p>
 			</b-col>
 			<b-col cols="12" md="4">
 				<h4>
 					<b>Objetivo</b>
 				</h4>
-				<p>aefioesmfkeom</p>
+				<p>Honestidad, Servicio, Responsabilidad, Lealtad, Respeto, Creatividad</p>
 			</b-col>
 		</b-row>
 
 		<b-row class="bg-white m-0 p-3">
-			<h1>no c k</h1>
+			<h1>Joaquín c la come</h1>
 		</b-row>
 	</b-container>
 </template>
