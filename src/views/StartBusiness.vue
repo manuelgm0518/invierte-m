@@ -11,7 +11,7 @@
     <div>
       <b-card no-body>
         <b-tabs pills card>
-          <b-tab :title="item.titulo" v-for="item in sections" :key="item">
+          <b-tab :title="item.titulo" v-for="(item,i) in sections" :key="i">
             <b-card-text>
               <ul>
                 <li v-for="tip in item.tips" :key="tip">{{ tip }} </li>
@@ -29,6 +29,10 @@
       <h4 class="ml-5">*Ley de operaciones y títulos de crédito</h4>
       <h4 class="ml-4">-Inversiones:</h4>
       <h4 class="ml-5">*Ley general de sociedades mercantiles</h4>
+    </div>
+    <div class="text-center my-5">
+      <h1 class="font-weight-bold">¡Crea tu primera empresa ahora!</h1>
+      <b-button size="lg" variant="success" :to="{'name': 'AgregarEmpresa', 'params':{ id:$store.state.user.id } }">Crear empresa</b-button>
     </div>
   </div>
 </template>

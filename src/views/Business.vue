@@ -2,6 +2,17 @@
 	<b-container class="my-5">
 		<b-row>
 			<b-col cols="12" md="7">
+				<b-carousel :interval="4000" :controls="imagesURL.length>1" :indicators="imagesURL.length>1">
+				<b-carousel-slide v-for="url in imagesURL" :key="url" style="height:20rem">
+							<template v-slot:img>
+								<img
+									style="position: absolute; top: 0; left: 0; min-width: 100%; height: 100%; max-width: 100%"
+									:src="url"
+								/>
+							</template>
+						</b-carousel-slide>
+				</b-carousel>
+<!--
 				<b-carousel
 					id="carousel-1"
 					v-model="carousel.slide"
@@ -17,7 +28,7 @@
 						:img-src="image"
 						style="max-height:20rem"
 					/>
-				</b-carousel>
+				</b-carousel>-->
 			</b-col>
 			<b-col>
 				<b-card class="border-0 shadow">
@@ -197,21 +208,10 @@ export default {
 		products: [
 			/*{ id: "", name: "", salePrice: 0.00, imageURL: "" }*/
 		],
-
-		carousel: {
-			slide: 0,
-			sliding: null
-		}
 	}),
 	methods: {
 		saveText(html){
 			this.content = html;
-		},
-		onSlideStart() {
-			this.carousel.sliding = true;
-		},
-		onSlideEnd() {
-			this.carousel.sliding = false;
 		},
 		invest() {
 			alert("Invertir");
