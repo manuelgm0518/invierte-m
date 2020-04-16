@@ -66,6 +66,46 @@
 			</b-col>
 		</b-row>
 
+		<b-row class="bg-white m-0 p-3 p-md-5 text-center">
+			<b-col>
+				<p class="divisor">¿Qué te permite nuestra plataforma?</p>
+
+				<b-row>
+					<b-col class="p-2" md>
+						<div class="bg-silver rounded py-2 px-4 h-100">
+							<span class="h4 text-golden font-weight-bold">Financiamiento</span>
+							<p>Con INVIRTE-M seleccionas de entre todas las alternativas de inversión, la que consideres más viable a tus condiciones, logrando con esto que tu capital sea el que genere mayores ingresos.</p>
+						</div>
+					</b-col>
+					<b-col class="p-2" md>
+						<div class="bg-silver rounded py-2 px-4 h-100">
+							<span class="h4 text-golden font-weight-bold">Clientes</span>
+							<p>A través de esta plataforma, ofreces los mejores productos y miles de personas podrán conocerlos, generando mayores utilidades a tu empresa.</p>
+						</div>
+					</b-col>
+					<b-col class="p-2" md>
+						<div class="bg-silver rounded py-2 px-4 h-100">
+							<span class="h4 text-golden font-weight-bold">Personal Capacitado</span>
+							<p>En INVIERTE-M se visualizan las ofertas de trabajo, a través del cual puedes postularte para que desarrolles tus habilidades en una empresa.</p>
+						</div>
+					</b-col>
+				</b-row>
+				<b-row>
+					<b-col class="p-2" md>
+						<div class="bg-silver rounded py-2 px-4">
+							<span class="h4 text-golden font-weight-bold">Proveedores</span>
+							<p>Si deseas ofrecer tus bienes o servicios, e incrementar tus ingresos, esta plataforma es la mejor opción, ya que a través de ella los puedes dar a conocer y que tu mercado se vea incrementado. </p>
+						</div>
+					</b-col>
+					<b-col class="p-2" md>
+						<div class="bg-silver rounded py-2 px-4">
+							<span class="h4 text-golden font-weight-bold">Visibilidad en Internet</span>
+							<p>Los servicios que ofrece INVIERTE-M a través de la Web, son alternativas económicas a través de la cual puedes recibir y otorgar beneficios, generando con esto activar la economía de sus usuarios.  </p>
+						</div>
+					</b-col>
+				</b-row>
+			</b-col>
+		</b-row>
 		<b-row class="bg-golden text-center m-0 p-3">
 			<b-col cols="12" md="4">
 				<h3>
@@ -114,6 +154,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.divisor{
+	background: #fbcd18;
+	font-size: 40px;
+	border-radius: 10px;
+}
 @import "../assets/anim-landing.scss";
 .landing {
 	height: 100vh;
