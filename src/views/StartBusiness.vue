@@ -23,7 +23,7 @@
     </div>
     <div class="mt-3">
       <center>
-        <h2 style="background: #fbcd18; border-radius:10px;   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);">¿Qué avala tus préstamos e inversiones?</h2>
+        <h2 style="background: #fbcd18; border-radius:10px;   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);">¿Qué avala los préstamos e inversiones?</h2>
       </center>
       <h4 class="ml-4">-Préstamos:</h4>
       <h4 class="ml-5">*Ley de operaciones y títulos de crédito</h4>
