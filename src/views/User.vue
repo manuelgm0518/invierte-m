@@ -40,12 +40,12 @@ export default {
 	name: "User",
 	data: () => ({
 		avatarURL: "https://placekitten.com/300/300",
-		firstName: "",
-		lastName: "",
+		firstName: "Joaquín Emiliano",
+		lastName: "Pedroza",
 		biography:
-			"Apasionado por la programación y el emprendimiento",
-		location: "Aguascalientes, Ags. México",
-		joinedDate: "16 / 04 / 2020",
+			"Emprendedor apasionado por la programación que busca la manera de mejorar a Mexico.",
+		location: "Jesus Maria, Aguascalientes.",
+		joinedDate: "16/04/2020",
 		businesses: []
 	}),
 	mounted() {
