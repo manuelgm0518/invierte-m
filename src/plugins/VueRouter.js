@@ -53,7 +53,7 @@ const Router = new VueRouter({
 		return new Promise((resolve) => {
 			setTimeout(() => {
 				resolve(savedPosition ? savedPosition : { x: 0, y: 0 })
-			}, 330)
+			}, 300)
 		})
 	}
 });
