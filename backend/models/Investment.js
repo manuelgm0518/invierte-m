@@ -9,4 +9,4 @@ var InvestmentSchema = new Schema({
     interest: { type: Number, default: 0.1 }
 });
 
-module.expors = model('Investment', InvestmentSchema);
+module.exports = model('Investment', InvestmentSchema);

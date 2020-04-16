@@ -1,27 +1,28 @@
 <template>
   <div>
-    <h1>Carrito de compra</h1>
-    <p class="numberProductsS">Número de productos: {{ shoppingCart.length }}</p>
+    <h1 style="padding-left: 30px;">Carrito de compra</h1>
+    <p class="numberProductsS" style="padding-left: 30px;">Número de productos: {{ shoppingCart.length }}</p>
     <div class="shoppingCart">
       <div v-for="(product, i) in shoppingCart" v-bind:key="i" class="productS">
         <div class="productImageS">
           <img v-bind:src="product.product.imageURL">
         </div>
-        <div class="productNameS">
+        <div class="productNameS"  v-on:click="goProduct(product.product._id)">
           {{ product.product.name }}
         </div>
         <div class="productQuantityS">
-          {{ product.quantity }}
+          Cantidad: {{ product.quantity }}
         </div>
         <div class="productPriceS">
-          {{ product.product.salePrice }}
+          Precio: $ {{ product.product.salePrice }} MXN
         </div>
         <div class="productTotalPriceS">
-          {{ product.product.salePrice * product.quantity }}
+          Total: $ {{ product.product.salePrice * product.quantity }} MXN
         </div>
-        <button class="productRemoveS">X</button>
+        <button class="productRemoveS" v-on:click="removeProduct(product._id)">X</button>
       </div>
     </div>
+    <h3 class="totalS">El total es: $ {{ total }} MXN <button v-on:click="pay">Pagar</button></h3>
   </div>
 </template>
 
@@ -32,20 +33,46 @@ export default {
 	name: "ShoppingCart",
 	data() {
 		return {
-			shoppingCart: {}
+      shoppingCart: {},
+      total:0
 		};
 	},
 	mounted() {
 		new Promise(() => {
 			setTimeout(() => {
-				axios
-					.get("http://localhost:3000/api/user/" + this.$store.state.user.id)
-					.then(res => {
-						this.shoppingCart = res.data.shoppingCart;
-					});
-			}, 50);
+				this.getProducts();
+			}, 100);
 		});
-	}
+  },
+  methods:{
+    getProducts(){
+      axios.get("http://localhost:3000/api/user/" + this.$store.state.user.id)
+      .then(res => {
+        this.shoppingCart = res.data.shoppingCart;
+        this.total = 0;
+        for(var product of this.shoppingCart){
+          this.total += product.product.salePrice * product.quantity;
+        }
+      });
+    },
+    goProduct(_id){
+      this.$router.push('/product/' + _id);
+    },
+    removeProduct(_id){
+      let pro = {
+        user:this.$store.state.user.id,
+        product:_id
+      };
+      axios.post('http://localhost:3000/api/user/removeShoppingCart', pro);
+      this.getProducts();
+    },
+    pay(){
+      alert('La página se encuentra en proceso de desarrollo, por lo que esta opción no está disponible. Se asumirá que se pagó todo.');
+      axios.get('http://localhost:3000/api/user/clearShoppingCart/' + this.$store.state.user.id);
+      this.getProducts();
+    }
+  }
+  
 };
 </script>
 
@@ -61,15 +88,27 @@ export default {
 }
 .productImageS,
 .productNameS,
-.productQuantityS {
+.productQuantityS,
+.productPriceS,
+.productTotalPriceS {
 	display: inline-block;
 	padding: 5px;
 }
 .productImageS img {
 	height: 40px;
 }
-.productRemoveS {
-	position: relative;
-	right: 0;
+.productRemoveS{
+	float: right;
+}
+.totalS{
+  padding-left: 30px;
+}
+.productNameS{
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.productNameS:hover{
+  color: lightblue;
 }
 </style>

@@ -39,6 +39,15 @@ router.post('/interval', (req, res) => {
     });
 });
 
+router.get('/user/:id', (req, res) => {
+    Business.find({owner:req.params.id}, (err, data) => {
+        if(err)
+            res.status(200).json(err);
+        else
+            res.json(data);
+    });
+});
+
 router.get('/:id', (req, res) => {
     Business.findOne({_id:req.params.id},(err, data) => {
         if(err){
