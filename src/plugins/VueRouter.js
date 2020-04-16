@@ -33,6 +33,21 @@ const Router = new VueRouter({
 	}, {
 		path: '/start-business', name: 'Emprender',
 		component: () => import('../views/StartBusiness.vue')
+	}, {
+		path: '/chat', name: 'Chats',
+		component: () => import('../views/Chat.vue')
+	}, {
+		path: '/shopping-cart', name: 'Carrito',
+		component: () => import('../views/ShoppingCart.vue')
+	}, {
+		path: '/investment', name: 'Inversiones',
+		component: () => import('../views/Investment.vue')
+	}, {
+		path: '/my-business', name: 'MisEmpresas',
+		component: () => import('../views/MyBusiness.vue')
+	}, {
+		path: '/user/:id', name: 'Usuario',
+		component: () => import('../views/User.vue')
 	}],
 	scrollBehavior(to, from, savedPosition) {
 		return new Promise((resolve) => {

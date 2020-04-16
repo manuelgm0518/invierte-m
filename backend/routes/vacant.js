@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+var fs = require('fs');
 
 const Vacant = require('../models/Vacant');
 
@@ -37,6 +38,37 @@ router.post('/interval', (req, res) => {
             res.json(data);
         }
     });
+});
+
+router.post('/file/:ids', (req, res) => {
+    var fstream;
+    req.pipe(req.busboy);
+    req.busboy.on('file', function (fieldname, file, filename) {
+        console.log("Uploading: " + filename);
+        var ids = req.params.ids.split('$');
+        Vacant.findOneAndUpdate({ "_id": ids[1]},{ "$push": { "requests": {user:ids[0], fileURL:__dirname + '/files/' + filename} } }, (err, data) => {
+            if(err)
+                console.log(err);
+        });
+        fstream = fs.createWriteStream(__dirname + '/files/' + filename);
+        file.pipe(fstream);
+        fstream.on('close', function () {
+            res.status(200);
+        });
+    });
+});
+
+router.get('/:id', (req, res) => {
+    Vacant.findOne({'_id':req.params.id}).populate('business').exec((err, data) => {
+        if(err){
+            res.status(400).json(err);
+            return;
+        }
+        else{
+            res.json(data);
+        }
+    });
+    res.status(200);
 });
 
 module.exports = router;

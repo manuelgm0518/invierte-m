@@ -5,11 +5,32 @@ Vue.use(Vuex);
 
 const Store = new Vuex.Store({
 	state: {
-		userId: null,
+		user: {
+			id: null,
+			avatarURL: '',
+			firstName: '',
+			lastName: '',
+			notifications: {
+				messages: 0,
+				shoppingCart: 0,
+				investments: 0,
+				businesses: 0
+			}
+		}
 	},
 	mutations: {
-		userLogin(state, user) {
-			state.loggedUser = user;
+		userLogIn(state, user) {
+			state.user.id = user.id;
+			state.user.avatarURL = user.avatarURL;
+			state.user.firstName = user.firstName;
+			state.user.lastName = user.lastName;
+			state.user.notifications = user.notifications;
+		}
+	},
+	getters: {
+		getNotificationCount: state => {
+			const { messages, shoppingCart, investments, businesses } = state.user.notifications;
+			return messages + shoppingCart + investments + businesses;
 		}
 	}
 });
