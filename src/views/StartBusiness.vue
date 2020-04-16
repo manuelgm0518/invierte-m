@@ -1,7 +1,12 @@
 <template>
   <div  class="container card p-3 mt-5">
     <div class="mt-3">
-      <h1>¿Eres nuevo? No te preocupes, aquí te damos unos consejos que te ayudarán</h1>
+      <center>
+        <h1 id="frase">¿Deseas iniciar un Proyecto que reditue ingresos? </h1>
+      </center>
+      <center>
+      <h2 id="contorno">Aquí te damos unos consejos que te ayudarán</h2>
+      </center>
     </div>
     <div>
       <b-card no-body>
@@ -17,11 +22,13 @@
       </b-card>
     </div>
     <div class="mt-3">
-      <h1>¿Qué avala tus préstamos e inversiones?</h1>
-      <h3 class="ml-4">-Préstamos:</h3>
+      <center>
+        <h2 style="background: #fbcd18; border-radius:10px;   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);">¿Qué avala los préstamos e inversiones?</h2>
+      </center>
+      <h4 class="ml-4">-Préstamos:</h4>
       <h4 class="ml-5">*Ley de operaciones y títulos de crédito</h4>
-      <h3 class="ml-4">-Inversiones:</h3>
-      <h4 class="ml-5">*Acta de aumento de capital social de una empresa protocolizada ante un notario público y registrada en el registro público de la propiedad</h4>
+      <h4 class="ml-4">-Inversiones:</h4>
+      <h4 class="ml-5">*Ley general de sociedades mercantiles</h4>
     </div>
     <div class="text-center my-5">
       <h1 class="font-weight-bold">¡Crea tu primera empresa ahora!</h1>
@@ -35,9 +42,9 @@ export default {
   name:'StartBusiness',
   data(){
     return{
-      sections:[
+      sections :[
         {
-          titulo: '¿Cómo empezar?',
+          titulo : '¿Cómo empezar?',
           tips: ['Desarrolla una idea', 'Prueba tu credibilidad', ' Escribe un plan de negocios', ' Determina la estructura legal',  'Seleciona el nombre de tu empresa']
         },
         {
@@ -61,3 +68,24 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.nav-pills .nav-link.active,
+.show>.nav-pills .nav-link{
+    background: green !important
+}
+#frase{
+  background: #fbcd18;
+  border-radius: 10px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+  width: 1050px;
+  margin-bottom: 15px;
+}
+#contorno{
+  margin-top: 0;
+  padding: 7px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+</style>
