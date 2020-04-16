@@ -1,11 +1,11 @@
 <template>
-	<b-container fluid class="my-3 my-md-5">
+	<b-container class="my-3 my-md-5">
 		<b-row>
 			<b-col cols="12" md="5">
-				<b-card class="border-0 shadow">
-					<b-row class="">
+				<b-card class="border-0 shadow my-2">
+					<b-row class>
 						<b-col cols="12" md="3" class="text-center">
-							<b-avatar variant="silver my-2" size="100" :src="avatarURL" rounded />
+							<b-avatar variant="silver my-2" size="75" :src="avatarURL" rounded />
 						</b-col>
 						<b-col>
 							<span class="h2 font-weight-bold">{{ firstName + " " + lastName}}</span>
@@ -18,16 +18,19 @@
 				</b-card>
 			</b-col>
 			<b-col>
-				<b-card class="border-0 shadow">
-			<div class="h3 font-weight-bold mb-3">Empresas</div>
-			<b-list-group>
-				<b-list-group-item button v-for="business in businesses" variant="silver" :key="business._id">{{business.name}}</b-list-group-item>
-			</b-list-group>
-		</b-card>
+				<b-card class="border-0 shadow my-2" v-if="businesses.length>0">
+					<div class="h3 font-weight-bold mb-3">Empresas</div>
+					<b-list-group>
+						<b-list-group-item
+							button
+							v-for="business in businesses"
+							variant="silver"
+							:key="business._id"
+						>{{business.name}}</b-list-group-item>
+					</b-list-group>
+				</b-card>
 			</b-col>
 		</b-row>
-
-		
 	</b-container>
 </template>
 
@@ -51,9 +54,7 @@ export default {
 	methods: {
 		getUserBusinesses() {
 			axios
-				.get(
-					"http://localhost:3000/api/business/user/" + this.$store.state.user.id
-				)
+				.get("http://localhost:3000/api/business/user/" + this.$route.params.id)
 				.then(res => {
 					this.businesses = res.data;
 				});
