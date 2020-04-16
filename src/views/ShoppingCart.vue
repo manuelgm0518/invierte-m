@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Carrito de compra</h1>
+    <p class="numberProductsS">Número de productos: {{ shoppingCart.length }}</p>
     <div class="shoppingCart">
       <div v-for="(product, i) in shoppingCart" v-bind:key="i" class="productS">
         <div class="productImageS">
@@ -11,6 +12,12 @@
         </div>
         <div class="productQuantityS">
           {{ product.quantity }}
+        </div>
+        <div class="productPriceS">
+          {{ product.product.salePrice }}
+        </div>
+        <div class="productTotalPriceS">
+          {{ product.product.salePrice * product.quantity }}
         </div>
         <button class="productRemoveS">X</button>
       </div>
@@ -28,11 +35,9 @@ export default {
       shoppingCart:{}
     }
   },
-  mounted(){
-    axios.get('http://localhost:3000/api/user/' + this.$store.state.user.id)
-    .then(res => {
-      this.shoppingCart = res.data.shoppingCart;
-    });
+  async created(){
+    const res = await axios.get('http://localhost:3000/api/user/' + this.$store.state.user.id)
+    this.shoppingCart = res.data.shoppingCart;
   }
 }
 </script>
