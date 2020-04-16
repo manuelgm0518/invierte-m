@@ -6,7 +6,7 @@
     <div>
       <b-card no-body>
         <b-tabs pills card>
-          <b-tab   :title="item.titulo" v-for="item in sections" :key="item">
+          <b-tab :title="item.titulo" v-for="item in sections" :key="item">
             <b-card-text>
               <ul>
                 <li v-for="tip in item.tips" :key="tip">{{ tip }} </li>
@@ -17,7 +17,7 @@
       </b-card>
     </div>
     <div class="mt-3">
-      <h1>¿Qué avala tus prestamos e inversiones?</h1>
+      <h1>¿Qué avala tus préstamos e inversiones?</h1>
       <h3 class="ml-4">-Préstamos:</h3>
       <h4 class="ml-5">*Ley de operaciones y títulos de crédito</h4>
       <h3 class="ml-4">-Inversiones:</h3>
