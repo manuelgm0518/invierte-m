@@ -7,7 +7,7 @@ var BusinessSchema = new Schema({
     imagesURL: [String],
     categories: [String],
     description: String,
-    content: [{ title: String, body: String }],
+    content: String,
     updates: [{
         date: { type: Date, default: Date },
         content: String

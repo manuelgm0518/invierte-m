@@ -33,6 +33,11 @@ export default {
         }
     },
     created(){
+        /*new Promise(()=>{
+            setTimeout(()=>{
+                
+            })
+        });*/
         axios.get('http://localhost:3000/api/vacant/' + this.$route.params.id)
         .then(res => {
             this.vacant = res.data;

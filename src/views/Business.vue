@@ -52,10 +52,20 @@
 		<b-row>
 			<b-col cols="12" md="7">
 				<b-card class="border-0 shadow my-3" v-if="content.length>0">
-					<div v-for="section in content" :key="section.name" class="my-2">
+					<!--<div v-for="section in content" :key="section.name" class="my-2">
 						<span class="font-weight-bold h4 text-golden">{{ section.title}}</span>
-						<div v-html="section.content"></div>
-					</div>
+						<div v-html="section.content"></div>-->
+						<div v-if="owner==$store.state.user.id">
+							<ContentEditor @update="saveText" :content="content" />
+							<div class="text-right mt-3">
+								<b-button variant="secondary mr-1">Cancelar</b-button>
+								<b-button variant="primary ml-1">Guardar Cambios</b-button>
+							</div>
+							
+						</div>
+						
+						<div v-else v-html="content"></div>
+					
 				</b-card>
 
 				<b-card v-for="update in updates" :key="update.date" class="border-0 shadow mt-3">
@@ -77,7 +87,8 @@
 						<b-button
 							div
 							v-for="vacant in lookingFor"
-							:key="vacant.id"
+							:key="vacant._id"
+							:to="{'name':'Vacante', 'params': {'id':vacant._id}}"
 							variant="silver my-2 text-center"
 							block
 						>
@@ -96,7 +107,13 @@
 						</span>
 					</b-button>
 					<b-collapse id="products-collapse" visible accordion="my-accordion" role="tabpanel">
-						<b-button v-for="product in products" :key="product.id" variant="silver my-2 text-left" block>
+						<b-button
+							v-for="product in products"
+							:key="product.id"
+							variant="silver my-2 text-left"
+							:to="{'name':'Producto', 'params':{'id':product._id}}"
+							block
+						>
 							<b-avatar :src="product.imageURL" class="align-top mt-1" />
 							<div class="d-inline-block ml-3">
 								<span class="h5 font-weight-bold">{{ product.name }}</span>
@@ -113,8 +130,13 @@
 
 <script>
 import axios from "axios";
+import ContentEditor from "../components/ContentEditor";
+
 export default {
 	name: "Business",
+	components: {
+		ContentEditor
+	},
 	mounted() {
 		new Promise(() => {
 			setTimeout(() => {
@@ -122,12 +144,19 @@ export default {
 					.get("http://localhost:3000/api/business/" + this.$route.params.id)
 					.then(res => {
 						Object.assign(this, res.data);
+						console.log(this.content);
 						axios
-							.get("http://localhost:3000/api/product/business/" + this.$route.params.id)
+							.get(
+								"http://localhost:3000/api/product/business/" +
+									this.$route.params.id
+							)
 							.then(res => {
 								this.products = res.data;
 								axios
-									.get("http://localhost:3000/api/vacant/business/" + this.$route.params.id)
+									.get(
+										"http://localhost:3000/api/vacant/business/" +
+											this.$route.params.id
+									)
 									.then(res => {
 										this.lookingFor = res.data;
 									});
@@ -135,20 +164,21 @@ export default {
 					});
 			}, 500);
 		});
-					},
+	},
 	data: () => ({
+		
 		owner: "",
 		name: "",
 		location: "",
 		imagesURL: [],
 		categories: [],
 		description: "",
-		content: [
-			{
+		content: "",
+			/*{
 				title: "kkdvak",
 				content: "joaquin c la come"
-			}
-		],
+			}*/
+		
 		updates: [
 			/*{ date: "",content: "" }*/
 		],
@@ -174,13 +204,20 @@ export default {
 		}
 	}),
 	methods: {
+		saveText(html){
+			this.content = html;
+		},
 		onSlideStart() {
 			this.carousel.sliding = true;
 		},
 		onSlideEnd() {
 			this.carousel.sliding = false;
+		},
+		invest() {
+			alert("Invertir");
 		}
-	}
+	},
+	
 };
 </script>
 

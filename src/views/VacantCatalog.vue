@@ -67,44 +67,7 @@
 			</b-col>
 		</b-row>
 	</b-container>
-<!--
-	<div>
-		<h1 style="padding-left: 10px;">Catálogo de Vacantes</h1>
 
-		<p id="ordenarpor">Ordenar por <select v-model="order" v-on:change="getPages">
-			<option v-bind:value="['name', 1]">Nombre A - Z</option>
-			<option v-bind:value="['name', -1]">Nombre Z - A</option>
-		</select></p>
-
-		<p id="cantpagina">Vacantes por página <select v-model="show" v-on:change="getPages">
-				<option value="30" selected>30</option>
-				<option value="50">50</option>
-				<option value="100">100</option>
-			</select></p>
-
-		<div class="vacanciesContainer">
-			<div class="vacancies" v-for="(vacant, i) in vacancies" v-bind:key="i" v-on:click="sendVacant(vacant._id)">
-				<div class="vacanciesName">
-					{{ vacant.name }}
-				</div>
-				<div class="vacationMonthlyPayment">
-					$ {{ vacant.monthlyPayment }} mensuales.
-				</div>
-				<div class="vacanciesBusiness">
-					Negocio: {{ vacant.business.name }}
-				</div>
-			</div>
-		</div>
-
-		<ul class="pagination">
-			<li><div class="paginationPage" v-on:click="changePage(actual - 1)">Anterior</div></li>
-			<li v-for="(page, i) in pages" v-bind:key="i">
-				<div class="paginationPage" v-if="page != actual" v-on:click="changePage(page)">{{page}}</div>
-				<div class="paginationActual" v-if="page == actual">{{page}}</div>
-			</li>
-			<li><div class="paginationPage" v-on:click="changePage(actual + 1)">Siguiente</div></li>
-		</ul>
-	</div>-->
 </template>
 
 <script>
