@@ -74,7 +74,7 @@
 					<b-col class="p-2" md>
 						<div class="bg-silver rounded py-2 px-4 h-100">
 							<span class="h4 text-golden font-weight-bold">Financiamiento</span>
-							<p>Con INVIRTE-M seleccionas de entre todas las alternativas de inversión, la que consideres más viable a tus condiciones, logrando con esto que tu capital sea el que genere mayores ingresos.</p>
+							<p>Con INVIERTE-M seleccionas de entre todas las alternativas de inversión, la que consideres más viable a tus condiciones, logrando con esto que tu capital sea el que genere mayores ingresos.</p>
 						</div>
 					</b-col>
 					<b-col class="p-2" md>
