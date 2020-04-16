@@ -102,7 +102,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .business{
       box-sizing: border-box;
     width: 20%;

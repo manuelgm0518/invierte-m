@@ -93,7 +93,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #ordenarpor{
 	background: #fbcd18;
 	width: 270px;
