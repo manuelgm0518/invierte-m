@@ -1,16 +1,20 @@
 <template>
-  <div >
+  <div class="separate">
     <img class="productImageN" v-bind:src="product.imageURL">
-    <div class="productInformationN">
+    <div class="containerproduct">
       <h2 class="productNameN">{{ product.name }}</h2>
-      <div class="productPriceN">Precio: $ {{product.salePrice }} MXN</div>
       <p class="productBuyN">Cantidad: <input type="number" value="1" min="1" max="100" v-model="quantity"> <button type="button" v-on:click="addShopingCart">Añadir al carrito</button></p>
-      <div class="productDescriptionN">{{ product.description }}</div>
+      <div class="productInformationN">
+        <div class="productPriceN"> <p id="price">Precio:</p>  $ {{product.salePrice }} MXN</div>
+        <div class="productDescriptionN">{{ product.description }}</div>
+        <div class="businessN">
+        <div class="businessNameN">Negocio: {{ business.name }}</div>
+        <div class="businessLocationN">Ubicación: {{ business.location }}</div>
+      </div>    
     </div>
-    <div class="businessN">
-      <div class="businessNameN">Negocio: {{ business.name }}</div>
-      <div class="businessLocationN">Ubicación: {{ business.location }}</div>
-    </div>
+    
+  </div>
+    
   </div>
 </template>
 
@@ -53,63 +57,79 @@ export default {
 </script>
 
 <style>
-body{
-  background: rgba(236, 229, 190, 0.548);
+.separate{
+  display: flex;
 }
+.businessNameN{
+  text-align: center;
+  background: white;
+  border-radius: 15px;
+  margin: 8px;
+}
+.productBuyN{
+  border: 3px solid  #fbcd18;
+  padding: 4px;
+  border-radius: 10px;
+  width: 100%;
+  margin-left: 25px;
+}
+.businessLocationN{
+  height: 45px;
+  text-align: center;
+  background: white;
+  border-radius: 15px;
+  margin: 8px;
+}
+
 
 .productImageN{
   float: left;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
-  margin: 10px;
-  margin-top: 20px;
+  height: 30%;
+  margin: 3% 3%;
   width: 30%;
   background: white;
 }
-.productInformationN{
-  box-sizing: border-box;
-  width: 60%;
-  right: 8%;
-  float: right;
-  position: relative;
-}
+
 .productNameN{
+  font-size: 50px;
   text-align: center;
+  background: wheat;
   background: -webkit-linear-gradient(left top, #fb9918, yellow);
   background: linear-gradient(to bottom right, #fb9918, yellow);
   background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-top: 30px;
-}
-.productPriceN{
-  box-shadow: 0px 0px 4px rgb(255, 51, 0);
-  position: static;
-  padding: 3px 8px;
-  border-radius: 3px;
-  display: inline-block;
-  background: white;
+  width: 180%;
 }
 .productDescriptionN{
-  border: 3px solid #fbcd18;
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 10px;
+  text-align: center;
   background: white;
+  border-radius: 15px;
+  margin: 8px;
+  height: 45%;
 }
-.productBuyN{
-  margin: 10px 0px;
-  width: 390px;
-  border: 3px solid greenyellow;
-  padding: 10px;
-  border-radius: 10px;
-}
-.businessN{
-  margin-left: 10px;
-  clear: both;
-  margin-top: 10px;
-  padding: 10px;
-  border: 3px solid rgb(51, 51, 77);
-  border-radius: 10px;
+.productPriceN {
+  text-align: center;
   background: white;
+  border-radius: 15px;
+  margin: 8px;
+}
+#price{
+  background: grey;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+
+
+}
+
+.productInformationN{
+  block-size: 350px;
+  width: 160%;
+  background: #fbcd18;
+  padding: 5px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+  margin:15px;
 }
 </style>
