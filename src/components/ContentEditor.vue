@@ -75,9 +75,6 @@ export default {
 </script>
 
 <style>
-.editor {
-	line-height: 0.5rem;
-}
 .editor > *:focus {
 	outline: none !important;
 }

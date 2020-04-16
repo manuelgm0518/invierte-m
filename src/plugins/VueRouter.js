@@ -40,14 +40,11 @@ const Router = new VueRouter({
 		path: '/shopping-cart', name: 'Carrito',
 		component: () => import('../views/ShoppingCart.vue')
 	}, {
-		path: '/investment', name: 'Inversiones',
-		component: () => import('../views/Investment.vue')
-	}, {
-		path: '/my-business', name: 'MisEmpresas',
-		component: () => import('../views/MyBusiness.vue')
-	}, {
 		path: '/user/:id', name: 'Usuario',
 		component: () => import('../views/User.vue')
+	}, {
+		path: '/addbusiness/:id', name:'AgregarEmpresa',
+		component: () => import('../views/AddBusiness.vue')
 	}, {
 		path: '/addproduct/:id', name:'AgregarProducto',
 		component: () => import('../views/AddProduct.vue')
