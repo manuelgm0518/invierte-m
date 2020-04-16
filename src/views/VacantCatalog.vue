@@ -118,7 +118,7 @@ export default {
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
     border-radius: 5px;
     cursor: pointer;
-	height: 100px;
+	height: 150px;
 }
 .vacancies:hover{
     background-color: #ddb514;
