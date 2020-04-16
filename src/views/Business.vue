@@ -35,7 +35,7 @@
 					<b-progress :value="fundRaising.collected" :max="fundRaising.goal" variant="golden" />
 					<div class="text-muted h5">{{ fundRaising.investors }} Inversores</div>
 					<b-button-group size="lg" class="w-100 mt-3">
-						<b-button variant="golden" block>
+						<b-button variant="golden" block v-on:click="invest">
 							<i class="fas fa-money-bill-wave fa-fw mr-3"></i>Invertir
 						</b-button>
 						<b-button variant="outline-golden">
@@ -135,25 +135,7 @@ export default {
 					});
 			}, 500);
 		});
-
-		/*this.products = [
-			{ id: "777", name: "segsgdsg", salePrice: 0.00, imageURL: "" }
-		];*/
-		/*this.content = [
-					{
-						title: "kkdvak",
-						content: "joaquin c la come"
 					},
-					{
-						title: "kkdvak2",
-						content: "joaquin c la come x2"
-					}
-				];
-				this.updates = [
-					{ date: "15/04/2020", content: "Joquín c la sigue comiendo" },
-					{ date: "16/04/2020", content: "Joquín c la sigue comiendo" }
-				];*/
-	},
 	data: () => ({
 		owner: "",
 		name: "",
