@@ -40,21 +40,26 @@ export default {
 	name: "User",
 	data: () => ({
 		avatarURL: "https://placekitten.com/300/300",
-		firstName: "Joaquín",
-		lastName: "'El Comedor' Pedroza",
+		firstName: "Joaquín Emiliano",
+		lastName: "Pedroza",
 		biography:
-			"Ah no mames, ¿Qué pedo? Por cierto me la como. Lorem ipsum senfomaekiunaeifmo jnoiaeijnifosdfsiisodfsioofdsoeesdfiso",
-		location: "La metrópoli Yisus Mery",
+			"Emprendedor apasionado por la programación que busca la manera de mejorar a Mexico.",
+		location: "Jesus Maria, Aguascalientes.",
 		joinedDate: "16/04/2020",
 		businesses: []
 	}),
 	mounted() {
 		this.getUserBusinesses();
+		axios.get("http://189.168.127.125/api/user/" + this.$route.params.id).then(res=> {
+			//this.avatarURL = res.data.avatarURL;
+			this.firstName = res.data.firstName;
+			this.lastName = res.data.lastName;
+		});
 	},
 	methods: {
 		getUserBusinesses() {
 			axios
-				.get("http://localhost:3000/api/business/user/" + this.$route.params.id)
+				.get("http://189.168.127.125/api/business/user/" + this.$route.params.id)
 				.then(res => {
 					this.businesses = res.data;
 				});

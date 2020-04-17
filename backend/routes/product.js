@@ -46,7 +46,7 @@ router.post('/file/:id', (req, res) => {
     req.pipe(req.busboy);
     req.busboy.on('file', function (fieldname, file, filename) {
         console.log("Uploading: " + filename);
-        Product.findOneAndUpdate({ "_id": req.params.id},{ "$set": { "imageURL":  'http://localhost:3000/img/' + filename} }, (err, data) => {
+        Product.findOneAndUpdate({ "_id": req.params.id},{ "$set": { "imageURL":  'http://189.168.127.125/api/img/' + filename} }, (err, data) => {
             if(err)
                 res.status(400).json(err);
         });

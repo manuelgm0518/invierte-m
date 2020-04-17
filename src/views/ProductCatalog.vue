@@ -103,7 +103,7 @@ export default {
 		};
 	},
 	created() {
-		axios.get("http://localhost:3000/api/product/count").then(res => {
+		axios.get("http://189.168.127.125/api/product/count").then(res => {
 			this.count = res.data;
 			this.getPages();
 		});
@@ -116,7 +116,7 @@ export default {
 				order: this.order
 			};
 			axios
-				.post("http://localhost:3000/api/product/interval", interval)
+				.post("http://189.168.127.125/api/product/interval", interval)
 				.then(res => {
 					this.products = res.data;
 				});

@@ -45,7 +45,7 @@ export default {
                 
             })
         });*/
-        axios.get('http://localhost:3000/api/vacant/' + this.$route.params.id)
+        axios.get('http://189.168.127.125/api/vacant/' + this.$route.params.id)
         .then(res => {
             this.vacant = res.data;
             this.business = res.data.business;
@@ -69,7 +69,7 @@ export default {
             this.file = this.$refs.file.files[0];
             let formData = new FormData();
             formData.append('file', this.file);
-            axios.post('http://localhost:3000/api/vacant/file/' + this.$store.state.user.id + '$' + this.$route.params.id, formData, { headers: {'Content-Type': 'multipart/form-data'}});
+            axios.post('http://189.168.127.125/api/vacant/file/' + this.$store.state.user.id + '$' + this.$route.params.id, formData, { headers: {'Content-Type': 'multipart/form-data'}});
             alert('Archivo subido correctamente'); //Podría ser más bonito
         }
     }

@@ -200,20 +200,20 @@ export default {
 		new Promise(() => {
 			setTimeout(() => {
 				axios
-					.get("http://localhost:3000/api/business/" + this.$route.params.id)
+					.get("http://189.168.127.125/api/business/" + this.$route.params.id)
 					.then(res => {
 						Object.assign(this, res.data);
 						console.log(this.content);
 						axios
 							.get(
-								"http://localhost:3000/api/product/business/" +
+								"http://189.168.127.125/api/product/business/" +
 									this.$route.params.id
 							)
 							.then(res => {
 								this.products = res.data;
 								axios
 									.get(
-										"http://localhost:3000/api/vacant/business/" +
+										"http://189.168.127.125/api/vacant/business/" +
 											this.$route.params.id
 									)
 									.then(res => {
@@ -303,7 +303,7 @@ export default {
 				);
 			} else {
 				axios
-					.post("http://localhost:3000/api/vacant", this.vacant)
+					.post("http://189.168.127.125/api/vacant", this.vacant)
 					.then(res => {
 						if (res.status == 200) {
 							this.$router.push("/vacant/" + res.data._id);
@@ -331,14 +331,14 @@ export default {
 				);
 			} else {
 				axios
-					.post("http://localhost:3000/api/product", this.product)
+					.post("http://189.168.127.125/api/product", this.product)
 					.then(res => {
 						if (res.status == 200) {
 							let formData = new FormData();
 							formData.append("file", this.file);
 							axios
 								.post(
-									"http://localhost:3000/api/product/file/" + res.data._id,
+									"http://189.168.127.125/api/product/file/" + res.data._id,
 									formData,
 									{ headers: { "Content-Type": "multipart/form-data" } }
 								)

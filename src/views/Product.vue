@@ -32,7 +32,7 @@ export default {
     }
   },
   created(){
-    axios.get('http://localhost:3000/api/product/' + this.id)
+    axios.get('http://189.168.127.125/api/product/' + this.id)
     .then(res => {
       this.product = res.data;
       this.business = this.product.business
@@ -48,7 +48,7 @@ export default {
             product:this.product._id,
             quantity:this.quantity
         }
-        axios.put('http://localhost:3000/api/user/addShoppingCart/' + this.$store.state.user.id, newShopingCart);
+        axios.put('http://189.168.127.125/api/user/addShoppingCart/' + this.$store.state.user.id, newShopingCart);
         this.$router.push('/shopping-cart');
       }
     }
