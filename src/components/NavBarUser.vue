@@ -93,14 +93,14 @@
 				<b-avatar rounded variant="silver" :src="$store.state.user.avatarURL" />
 				<b class="ml-2">{{ $store.state.user.firstName + ' ' + $store.state.user.lastName }}</b>
 			</b-dropdown-item>
-			<b-dropdown-item :to="{ 'name': 'Chats' }" class="w-100">
+			<!-- <b-dropdown-item :to="{ 'name': 'Chats' }" class="w-100">
 				<i class="fas fa-comments fa-fw mr-2 text-golden" />Mensajes
 				<b-badge
 					variant="golden mx-1"
 					pill
 					v-if="$store.state.user.notifications.messages>0"
 				>{{ $store.state.user.notifications.messages }}</b-badge>
-			</b-dropdown-item>
+			</b-dropdown-item> -->
 			<b-dropdown-item :to="{ 'name': 'Carrito'}" class="w-100">
 				<i class="fas fa-shopping-cart fa-fw mr-2 text-golden" />Carrito de compra
 				<b-badge
@@ -109,22 +109,22 @@
 					v-if="$store.state.user.notifications.shoppingCart>0"
 				>{{ $store.state.user.notifications.shoppingCart }}</b-badge>
 			</b-dropdown-item>
-			<b-dropdown-item :to="{ 'name': 'Inversiones' }" class="w-100">
+			<!-- <b-dropdown-item :to="{ 'name': 'Inversiones' }" class="w-100">
 				<i class="fas fa-piggy-bank fa-fw mr-2 text-golden" />Mis inversiones
 				<b-badge
 					variant="golden mx-1"
 					pill
 					v-if="$store.state.user.notifications.investments>0"
 				>{{ $store.state.user.notifications.investments }}</b-badge>
-			</b-dropdown-item>
-			<b-dropdown-item :to="{'name': 'MisEmpresas'}" class="w-100">
+			</b-dropdown-item> -->
+			<!-- <b-dropdown-item :to="{'name': 'MisEmpresas'}" class="w-100">
 				<i class="fas fa-suitcase fa-fw mr-2 text-golden"></i>Mis empresas
 				<b-badge
 					variant="golden mx-1"
 					pill
 					v-if="$store.state.user.notifications.businesses>0"
 				>{{ $store.state.user.notifications.businesses }}</b-badge>
-			</b-dropdown-item>
+			</b-dropdown-item> -->
 			<b-dropdown-divider></b-dropdown-divider>
 			<!--Oculto hasta cuando haya página de configuración
 				<b-dropdown-item class="w-100">

@@ -282,7 +282,12 @@ export default {
 			this.content = html;
 		},
 		invest() {
-			alert("Invertir");
+			if(!this.$store.state.user.id){
+				alert('Debe iniciar sesión para poder invertir');
+			}
+			else{
+				alert('Dado que la página es un prototipo, esta opción está deshabilidatada, con el fin de no recaudar datos financieros');
+			}
 		},
 		addVacant() {
 			if (
