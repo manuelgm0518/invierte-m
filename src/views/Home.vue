@@ -88,7 +88,7 @@
 		</b-row>
 
 		<b-row class="bg-white m-0 p-3">
-			<h1>Joaquín c la come</h1>
+			<h1></h1>
 		</b-row>
 	</b-container>
 </template>
