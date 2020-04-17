@@ -97,7 +97,7 @@ export default {
 		}
 	},
 	created(){
-		axios.get('http://localhost:3000/api/vacant/count')
+		axios.get('http://189.168.127.125/api/vacant/count')
 		.then(res => {
 			this.count = res.data.count;
 			this.getPages();
@@ -110,7 +110,7 @@ export default {
                 max: (this.actual) * this.show,
 				order:this.order
 			};
-			axios.post('http://localhost:3000/api/vacant/interval', interval)
+			axios.post('http://189.168.127.125/api/vacant/interval', interval)
 			.then(res => {
 				this.vacancies = res.data;
 			});

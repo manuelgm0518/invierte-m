@@ -50,7 +50,7 @@ export default {
 	}),
 	mounted() {
 		this.getUserBusinesses();
-		axios.get("http://localhost:3000/api/user/" + this.$route.params.id).then(res=> {
+		axios.get("http://189.168.127.125/api/user/" + this.$route.params.id).then(res=> {
 			//this.avatarURL = res.data.avatarURL;
 			this.firstName = res.data.firstName;
 			this.lastName = res.data.lastName;
@@ -59,7 +59,7 @@ export default {
 	methods: {
 		getUserBusinesses() {
 			axios
-				.get("http://localhost:3000/api/business/user/" + this.$route.params.id)
+				.get("http://189.168.127.125/api/business/user/" + this.$route.params.id)
 				.then(res => {
 					this.businesses = res.data;
 				});

@@ -89,7 +89,7 @@ export default {
 	methods: {
 		createBusiness() {
 			axios
-				.post("http://localhost:3000/api/business/", {
+				.post("http://189.168.127.125/api/business/", {
 					owner: this.$store.state.user.id,
           name: this.name,
           description: this.description,

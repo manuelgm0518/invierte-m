@@ -46,7 +46,7 @@ export default {
   },
   methods:{
     getProducts(){
-      axios.get("http://localhost:3000/api/user/" + this.$store.state.user.id)
+      axios.get("http://189.168.127.125/api/user/" + this.$store.state.user.id)
       .then(res => {
         this.shoppingCart = res.data.shoppingCart;
         this.total = 0;
@@ -63,12 +63,12 @@ export default {
         user:this.$store.state.user.id,
         product:_id
       };
-      axios.post('http://localhost:3000/api/user/removeShoppingCart', pro);
+      axios.post('http://189.168.127.125/api/user/removeShoppingCart', pro);
       this.getProducts();
     },
     pay(){
       alert('La página se encuentra en proceso de desarrollo, por lo que esta opción no está disponible. Se asumirá que se pagó todo.');
-      axios.get('http://localhost:3000/api/user/clearShoppingCart/' + this.$store.state.user.id);
+      axios.get('http://189.168.127.125/api/user/clearShoppingCart/' + this.$store.state.user.id);
       this.getProducts();
     }
   }

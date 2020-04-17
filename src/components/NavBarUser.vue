@@ -193,7 +193,7 @@ export default {
 					password: this.logIn.password
 				};
 				axios
-					.post("http://localhost:3000/api/user/login", logUser)
+					.post("http://189.168.127.125/api/user/login", logUser)
 					.then(res => {
 						if (res.status == 200) {
 							if (res.data.error == "User does not exist") {
@@ -246,7 +246,7 @@ export default {
 					email: this.signUp.email,
 					password: this.signUp.password
 				};
-				axios.post("http://localhost:3000/api/user", newUser).then(res => {
+				axios.post("http://189.168.127.125/api/user", newUser).then(res => {
 					if (res.status == 200) {
 						if (res.data.error == "User already exists") {
 							this.toast(
@@ -260,7 +260,7 @@ export default {
 								password: this.signUp.password
 							};
 							axios
-								.post("http://localhost:3000/api/user/login", logUser)
+								.post("http://189.168.127.125/api/user/login", logUser)
 								.then(res => {
 									if (res.status == 200) {
 										if (res.data.error == "User does not exist") {
@@ -293,7 +293,7 @@ export default {
 			localStorage.clear();
 		},
 		updateVuexStore() {
-			axios.get("http://localhost:3000/api/user", { headers: { token:localStorage.getItem('token') }})
+			axios.get("http://189.168.127.125/api/user", { headers: { token:localStorage.getItem('token') }})
 			.then(res => {
 				if (res.status == 200) {
 					if(res.data.unauthorized)
@@ -305,10 +305,10 @@ export default {
 							firstName: res.data.firstName,
 							lastName: res.data.lastName,
 							notifications: {
-								messages: 5,
+								messages: 0,
 								shoppingCart: res.data.shoppingCart.length,
-								investments: 9,
-								businesses: 1
+								investments: 0,
+								businesses: 0
 							}
 						});
 					}
