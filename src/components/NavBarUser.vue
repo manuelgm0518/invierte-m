@@ -6,7 +6,7 @@
 					<i class="fas fa-sign-in-alt fa-fw mr-2" />Ingresar
 				</b-button>
 			</template>
-
+<!--  -->
 			<!-- [ LOGIN] -->
 			<b-tabs end small no-nav-style active-nav-item-class="d-none" style="width:20rem" align="center">
 				<b-tab title="¿Ya tienes una cuenta?" active>
